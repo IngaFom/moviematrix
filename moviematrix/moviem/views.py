@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Movie, Director, Actor, Genre
 
 
-def fetch_movie_data(request):
+def homepage(request):
     api_key = '239e8e686b9eef955b92516a351c9286'
     movie_id = 550
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}"
@@ -13,9 +13,9 @@ def fetch_movie_data(request):
         movie_data = response.json()
         title = movie_data.get('original_title')
         release_date = movie_data.get('release_date')
-        genres = [genre['name'] for genre in movie_data.get('genres', [])]
+        genres = "all_genres"
 
-        return render(request, 'movies/movie_list.html', {
+        return render(request, 'homepage.html', {
             'title': title,
             'release_date': release_date,
             'genres': genres
