@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>MOVIEMATRIX - Your Favorite Movies</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'homepage' %}">Home</a></li>
+                <li><a href="{% url 'movie_list' genre.id %}">Movies</a></li>
+                <li><a href="{% url 'genre_list' %}">Genres</a>
+                    <ul>
+                        <li><a href="{% url 'movie_list' genre.id %}">Action</a></li>
+                        <li><a href="{% url 'movie_list' genre.id %}">Comedy</a></li>
+                        <li><a href="{% url 'movie_list' genre.id %}">Drama</a></li>
+                        <li><a href="{% url 'movie_list' genre.id %}">Horror</a></li>
+                        <li><a href="{% url 'movie_list' genre.id %}">Thriller</a></li>
+                        <!-- add more genre links -->
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <!-- search bar HTML here -->
+        </div>
+        <div class="user-actions">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 MOVIEMATRIX</p>
+    </footer>
+</body>
+</html>
