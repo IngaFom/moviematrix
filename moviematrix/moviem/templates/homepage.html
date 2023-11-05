@@ -1,35 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title%}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <header>
-{#        <h1>{% block header %}Welcome to Our Movie Database{% endblock %}</h1>#}
-{#        {% if user.is_authenticated %}#}
-{#            <p>Welcome, {{ user.username }}</p>#}
-{#            <a href="{% url 'logout' %}">Logout</a>#}
-{#        {% else %}#}
-{#            <a href="{% url 'login' %}">Login</a>#}
-{#            <a href="{% url 'register' %}">Register</a>#}
-{#        {% endif %}#}
-    </header>
+{% extends "base.html" %}
 
-    <main>
-        {% block content %}
-
-            Title: {{ title }}<br>
-            Release date: {{ release_date }}<br>
-            Genres: {{ genres }}
-        {% endblock %}
-    </main>
-
-    <footer>
-        <p>&copy; 2023 MOVIEMATRIX</p>
-    </footer>
-</body>
-</html>
+{% block content %}
+    <!-- homepage content -->
+{% endblock %}
