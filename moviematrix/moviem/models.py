@@ -19,12 +19,10 @@ class Movie(models.Model):
     )
     actors = models.ManyToManyField(
         'Actor',
-        null=False,
         blank=False,
     )
     genres = models.ManyToManyField(
         'Genre',
-        null=False,
         blank=False,
     )
 

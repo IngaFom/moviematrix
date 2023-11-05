@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from moviem import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movie-data/', views.fetch_movie_data, name='fetch_movie_data'),
+    path('', views.homepage, name='fetch_movie_data'),
 ]
