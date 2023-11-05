@@ -8,15 +8,12 @@ def fetch_movie_data(request):
     movie_id = 550
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}"
     response = requests.get(url)
-    print(response.text)
 
     if response.status_code == 200:
         movie_data = response.json()
-
-        for movie_info in movie_data:
-            title = movie_info.get('original_title')
-            release_date = movie_info.get('release_date')
-            genres = [genre['name'] for genre in movie_data.get('genres', [])]
+        title = movie_data.get('original_title')
+        release_date = movie_data.get('release_date')
+        genres = [genre['name'] for genre in movie_data.get('genres', [])]
 
         return render(request, 'movies/movie_list.html', {
             'title': title,
@@ -24,7 +21,10 @@ def fetch_movie_data(request):
             'genres': genres
         })
     else:
-        return render(request, 'movies/movie_list.html', {'message': 'Error fetching movie data'})
+        return render(
+            request, 'movies/movie_list.html',
+            {'message': 'Error fetching movie data'}
+        )
 
 
 def actors_data(request):
@@ -32,9 +32,8 @@ def actors_data(request):
     movie_id = 550
     url = f"https://api.themoviedb.org/3/movie/{movie_id}api_key={api_key}"
     response = requests.get(url)
-    print(response.text)
 
-    if response.status.code == 200:
+    if response.status_code == 200:
         actors = response.json()
         results = actors.get("results", {"results": "No results"})
 
@@ -42,3 +41,9 @@ def actors_data(request):
             for actors_info in actors:
                 name = actors_info.get("name")
                 actor_gender = "Male" if actors_info.get("gender") == 2 else "Female"
+
+    else:
+        return render(
+            request, 'movies/movie_list.html',
+            {'message': 'Error fetching actors data'}
+        )
