@@ -20,5 +20,5 @@ from moviem import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movie-data/', views.fetch_movie_data, name='fetch_movie_data'),
+    path('movie-data/', views.movie_list, name='movie_list'),
 ]
