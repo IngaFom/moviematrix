@@ -1,48 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
+    <body style="background-image: url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_768/u_https://assets.cdn.filesafe.space/zqdTo1x3PIK4HeALRHNQ/media/6318f9e44bf09a573f70db74.png');">
+    <!-- content here -->
+</body>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title%}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
+    <title>{% block title %}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
+    <!-- Link to Google Fonts -->
+        <h1>Type for Search</h1>
+    <form action="/search" method="get">
+        <label>
+            <input type="text" name="query" placeholder="Search...">
+        </label>
+        <button type="submit">Search</button>
+    </form>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300&display=swap"
+          rel="stylesheet">
+    <!-- Link to CSS file -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
+    <style>
+        /* CSS for "neonText class */
+        .neonText {
+            font-family: 'Roboto Light', cursive;
+            color: #1F51FF;
+            text-align: right;
+            font-size: 25px;
+        }
+    </style>
 <body>
+    <h1 class="neonText">
+        MOVIEMATRIX
+    </h1>
+    <p class="neonText">
+        Your Favorite Movies
+    </p>
+    <nav>
+        <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'movie_list' genre.id %}">Movies</a></li>
+            <li><a href="{% url 'genre_list' %}">Genres</a>
+                <ul>
+                    <li><a href="{% url 'movie_list' genre.id %}">Action</a></li>
+                    <li><a href="{% url 'movie_list' genre.id %}">Comedy</a></li>
+                    <li><a href="{% url 'movie_list' genre.id %}">Drama</a></li>
+                    <li><a href="{% url 'movie_list' genre.id %}">Horror</a></li>
+                    <li><a href="{% url 'movie_list' genre.id %}">Thriller</a></li>
+                    <!-- add more genre links -->
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="search-bar">
+        <!-- search bar HTML here -->
+    </div>
+
     <header>
-        <h1>MOVIEMATRIX - Your Favorite Movies</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'homepage' %}">Home</a></li>
-                <li><a href="{% url 'movie_list' genre.id %}">Movies</a></li>
-                <li><a href="{% url 'genre_list' %}">Genres</a>
-                    <ul>
-                        <li><a href="{% url 'movie_list' genre.id %}">Action</a></li>
-                        <li><a href="{% url 'movie_list' genre.id %}">Comedy</a></li>
-                        <li><a href="{% url 'movie_list' genre.id %}">Drama</a></li>
-                        <li><a href="{% url 'movie_list' genre.id %}">Horror</a></li>
-                        <li><a href="{% url 'movie_list' genre.id %}">Thriller</a></li>
-                        <!-- add more genre links -->
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div class="search-bar">
-            <!-- search bar HTML here -->
-        </div>
-        <div class="user-actions">
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-            {% endif %}
-        </div>
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}!</p>
+            <a href="{% url 'login' %}">Login</a>
+        {% else %}
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
     </header>
-
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-
     <footer>
         <p>&copy; 2023 MOVIEMATRIX</p>
     </footer>
