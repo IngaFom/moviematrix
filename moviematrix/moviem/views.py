@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render
+from moviematrix import fetch_data
 from .models import Movie, Director, Actor, Genre
-
 
 
 def homepage(request):
@@ -20,8 +20,10 @@ def homepage(request):
             'title': title,
             'release_date': release_date,
             'genres': genres
-          
-from moviematrix.api import fetch_data
+        })
+
+    return render(request, 'base.html',
+                  {'message': 'Error fetching movie data'})
 
 
 def movie_list(request):
@@ -45,32 +47,31 @@ def movie_list(request):
             'titles': titles,
             'release_dates': release_dates,
             'genres_list': all_genres
-
         })
-    else:
-        return render(
-            request, 'movies/movie_list.html',
-            {'message': 'Error fetching movie data'}
-        )
+
+    return render(request, 'movies/movie_list.html',
+                  {'message': 'Error fetching movie data'})
 
 
 def actors_data(request):
     api_key = '239e8e686b9eef955b92516a351c9286'
     movie_id = 550
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}api_key={api_key}"
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}"
     response = requests.get(url)
 
     if response.status_code == 200:
         actors = response.json()
-        results = actors.get("results", {"results": "No results"})
+        results = actors.get("results", [])
 
+        actors_info = []
         if results:
-            for actors_info in actors:
-                name = actors_info.get("name")
-                actor_gender = "Male" if actors_info.get("gender") == 2 else "Female"
+            for actor in results:
+                name = actor.get("name")
+                actor_gender = "Male" if actor.get("gender") == 2 else "Female"
+                actors_info.append({"name": name, "gender": actor_gender})
 
-    else:
-        return render(
-            request, 'movies/movie_list.html',
-            {'message': 'Error fetching actors data'}
-        )
+            return render(request, 'actors/actors_list.html',
+                          {'actors_info': actors_info})
+
+    return render(request, 'actors/actors_list.html',
+                  {'message': 'Error fetching actors data'})
