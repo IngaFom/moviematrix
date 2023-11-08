@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Movie, Director, Actor, Genre
 
 
+
 def homepage(request):
     api_key = '239e8e686b9eef955b92516a351c9286'
     movie_id = 550
@@ -19,6 +20,32 @@ def homepage(request):
             'title': title,
             'release_date': release_date,
             'genres': genres
+          
+from moviematrix.api import fetch_data
+
+
+def movie_list(request):
+    results = fetch_data()
+
+    if results.status_code == 200:
+        movie_data = results.json()
+        titles = []
+        release_dates = []
+        all_genres = []
+
+        for movie in movie_data.get('results', []):
+            title = movie.get('original_title')
+            release_date = movie.get('release_date')
+            genres = [genre['name'] for genre in movie.get('genres', [])]
+            titles.append(title)
+            release_dates.append(release_date)
+            all_genres.append(genres)
+
+        return render(request, 'movies/movie_list.html', {
+            'titles': titles,
+            'release_dates': release_dates,
+            'genres_list': all_genres
+
         })
     else:
         return render(
