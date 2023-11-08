@@ -15,7 +15,7 @@ def homepage(request):
         release_date = movie_data.get('release_date')
         genres = "all_genres"
 
-        return render(request, 'homepage.html', {
+        return render(request, 'base.html', {
             'title': title,
             'release_date': release_date,
             'genres': genres
