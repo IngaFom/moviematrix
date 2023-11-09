@@ -16,11 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from moviematrix import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movie-data/', views.movie_list, name='movie_list'),
-    path('', include('moviematrix.urls')),
+    path('', include('moviem.urls')),
 ]
-

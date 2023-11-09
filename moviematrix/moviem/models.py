@@ -65,6 +65,7 @@ class Actor(models.Model):
 
 
 class Genre(models.Model):
+    id = models.IntegerField
     name = models.CharField(max_length=150,
                             null=False,
                             blank=False,
