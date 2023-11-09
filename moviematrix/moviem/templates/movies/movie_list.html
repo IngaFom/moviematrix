@@ -1,0 +1,14 @@
+
+{% block content %}
+    <p>{{movie_list_data}}</p>
+
+    <ul>
+        {% for movie_data in movie_list_data %}
+            <li>
+                <p>{{ movie_data.title }}</p>
+            </li>
+        {% empty %}
+            <li>No videos found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
