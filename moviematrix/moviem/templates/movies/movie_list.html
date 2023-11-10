@@ -6,6 +6,7 @@
         {% for movie_data in movie_list_data %}
             <li>
                 <p>{{ movie_data.title }}</p>
+                <p><a href="{% url 'movie_details' movie_data.id %}">{{ movie_data.title }}</a></p>
             </li>
         {% empty %}
             <li>No videos found.</li>

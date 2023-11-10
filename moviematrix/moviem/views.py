@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render
 
-from .api import fetch_movie_list, fetch_genre_list
+from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details
 from .models import Movie, Director, Actor, Genre
 
 def genre_list(request):
@@ -40,6 +40,16 @@ def movie_list(request, genre_id):
     return render(request, 'movies/movie_list.html',
                   {'message': 'Error fetching movie data'})
 
+def movie_details(request, movie_id):
+    movie_details = fetch_movie_details(movie_id)
+
+    if movie_details.status_code == 200:
+        movie_data = movie_details.json()
+        return render(request, 'movies/movie_details.html', {
+            'movie_data': movie_data
+        })
+
+    return render(request, 'movies/movie_details.html', {'message': 'Error fetching movie details'})
 
 def actors_data(request):
     api_key = '239e8e686b9eef955b92516a351c9286'
