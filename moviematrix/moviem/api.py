@@ -7,8 +7,16 @@ def fetch_genre_list():
     response = requests.get(url)
     return response
 
+
 def fetch_movie_list():
     api_key = '239e8e686b9eef955b92516a351c9286'
     url = f"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key={api_key}"
+    response = requests.get(url)
+    return response
+
+
+def fetch_movie_details(movie_id):
+    api_key = '239e8e686b9eef955b92516a351c9286'
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?language=en-US&api_key={api_key}"
     response = requests.get(url)
     return response
