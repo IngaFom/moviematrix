@@ -25,24 +25,19 @@ def base(request):
 
 
 def movie_list(request, genre_id):
-    results = fetch_movie_list()
+    all_movies = []
 
-    if results.status_code == 200:
-        movie_data = results.json()
+    for page_number in range(1, 10):
+        results = fetch_movie_list(page=page_number)
 
-        filtered_movies = []
+        if results.status_code == 200:
+            movie_data = results.json().get('results', [])
 
-        for movie in movie_data.get('results', []):
-            if genre_id in movie.get('genre_ids', []):
-                filtered_movies.append(movie)
+            filtered_movies = [movie for movie in movie_data if genre_id in movie.get('genre_ids', [])]
 
-        return render(request, 'movies/movie_list.html', {
-            'movie_list_data': filtered_movies
-        })
+            all_movies.extend(filtered_movies)
 
-    return render(request, 'movies/movie_list.html',
-                  {'message': 'Error fetching movie data'})
-
+    return render(request, 'movies/movie_list.html', {'movie_list_data': all_movies})
 
 def cast_list(request, movie_id):
     cast_list = fetch_actors_data(movie_id)
