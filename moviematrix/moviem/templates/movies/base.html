@@ -23,6 +23,14 @@
     </ul>
 {% endblock %}
 
+    <h2>Random Movie Posters</h2>
+    <div class="poster-container">
+        {% for poster in random_posters %}
+            <a href="{% url 'movie_details' poster.id %}">
+                <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
+            </a>
+        {% endfor %}
+
     <form action="/search" method="get">
         <label>
             <input type="text" name="query" placeholder="Search...">
