@@ -39,6 +39,7 @@ def movie_list(request, genre_id):
 
     return render(request, 'movies/movie_list.html', {'movie_list_data': all_movies})
 
+
 def cast_list(request, movie_id):
     cast_list = fetch_actors_data(movie_id)
 
@@ -58,8 +59,14 @@ def movie_details(request, movie_id):
     if movie_details.status_code == 200:
         movie_data = movie_details.json()
 
-        return render(request, 'movies/movie_details.html', {
-            'movie_data': movie_data
-        })
+        actors_data = fetch_actors_data(movie_id)
+
+        if actors_data.status_code == 200:
+            actors = actors_data.json().get('cast', [])
+
+            return render(request, 'movies/movie_details.html', {
+                'movie_data': movie_data,
+                'actors': actors
+            })
 
     return render(request, 'movies/movie_details.html', {'message': 'Error fetching movie details'})
