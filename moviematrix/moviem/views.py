@@ -1,8 +1,12 @@
 import requests
 from random import sample
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data
+from .forms import CustomUserCreationForm
 from .models import Movie, Director, Actor, Genre
 
 
@@ -15,12 +19,12 @@ def base(request):
         movie_data = movie_results.json().get('results', [])
         random_posters = sample(movie_data, 5)
 
-        return render(request, 'movies/base.html', {
+        return render(request, 'homepage/base.html', {
             'base': genre_data.get('genres', []),
             'random_posters': random_posters
         })
 
-    return render(request, 'movies/base.html',
+    return render(request, 'homepage/base.html',
                   {'message': 'Error fetching genre data'})
 
 
@@ -70,3 +74,33 @@ def movie_details(request, movie_id):
             })
 
     return render(request, 'movies/movie_details.html', {'message': 'Error fetching movie details'})
+
+
+def register(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("profile")
+    else:
+        form = CustomUserCreationForm()
+    return render(request, "movies/registration/registration_form.html", {"form": form})
+
+
+@login_required
+def profile(request):
+    return render(request, 'homepage/base.html')
+
+
+def user_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('profile')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'homepage/login.html', {'form': form})
+
