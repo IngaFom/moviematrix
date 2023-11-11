@@ -1,5 +1,5 @@
 import requests
-import random
+from random import sample
 from django.shortcuts import render
 
 from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data
@@ -8,12 +8,16 @@ from .models import Movie, Director, Actor, Genre
 
 def base(request):
     results = fetch_genre_list()
+    movie_results = fetch_movie_list()
 
-    if results.status_code == 200:
+    if results.status_code == 200 and movie_results.status_code == 200:
         genre_data = results.json()
+        movie_data = movie_results.json().get('results', [])
+        random_posters = sample(movie_data, 5)
 
         return render(request, 'movies/base.html', {
-            'base': genre_data.get('genres', [])
+            'base': genre_data.get('genres', []),
+            'random_posters': random_posters
         })
 
     return render(request, 'movies/base.html',
