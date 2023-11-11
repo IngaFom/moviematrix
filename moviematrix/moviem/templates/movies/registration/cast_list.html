@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Cast List</title>
+</head>
+<body>
+    <h1>Cast List</h1>
+    <ul>
+        {% for actor in cast_list %}
+            <li>
+                <strong>{{ actor.name }}</strong> as {{ actor.character }}
+            </li>
+        {% empty %}
+            <li>No cast details available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

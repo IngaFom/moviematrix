@@ -2,7 +2,7 @@ import requests
 import random
 from django.shortcuts import render
 
-from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details
+from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data
 from .models import Movie, Director, Actor, Genre
 
 
@@ -40,37 +40,27 @@ def movie_list(request, genre_id):
                   {'message': 'Error fetching movie data'})
 
 
+def cast_list(request, movie_id):
+    cast_list = fetch_actors_data(movie_id)
+
+    if cast_list.status_code == 200:
+        actors = cast_list.json().get('cast', [])
+
+        return render(request, 'movies/cast_list.html', {
+            'actors': actors
+        })
+
+    return render(request, 'movies/cast_list.html', {'message': 'Error fetching actors data'})
+
+
 def movie_details(request, movie_id):
     movie_details = fetch_movie_details(movie_id)
 
     if movie_details.status_code == 200:
         movie_data = movie_details.json()
+
         return render(request, 'movies/movie_details.html', {
             'movie_data': movie_data
         })
 
     return render(request, 'movies/movie_details.html', {'message': 'Error fetching movie details'})
-
-
-def actors_data(request):
-    api_key = '239e8e686b9eef955b92516a351c9286'
-    movie_id = 550
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}"
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        actors = response.json()
-        results = actors.get("results", [])
-
-        actors_info = []
-        if results:
-            for actor in results:
-                name = actor.get("name")
-                actor_gender = "Male" if actor.get("gender") == 2 else "Female"
-                actors_info.append({"name": name, "gender": actor_gender})
-
-            return render(request, 'actors/actors_list.html',
-                          {'actors_info': actors_info})
-
-    return render(request, 'actors/actors_list.html',
-                  {'message': 'Error fetching actors data'})
