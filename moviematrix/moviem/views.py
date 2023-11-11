@@ -6,17 +6,17 @@ from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_
 from .models import Movie, Director, Actor, Genre
 
 
-def genre_list(request):
+def base(request):
     results = fetch_genre_list()
 
     if results.status_code == 200:
         genre_data = results.json()
 
-        return render(request, 'movies/genre_list.html', {
-            'genre_list': genre_data.get('genres', [])
+        return render(request, 'movies/base.html', {
+            'base': genre_data.get('genres', [])
         })
 
-    return render(request, 'movies/genre_list.html',
+    return render(request, 'movies/base.html',
                   {'message': 'Error fetching genre data'})
 
 

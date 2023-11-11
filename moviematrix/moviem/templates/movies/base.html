@@ -9,6 +9,20 @@
     <title>{% block title %}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
     <!-- Link to Google Fonts -->
         <h1>Type for Search</h1>
+
+{% block content %}
+
+    <ul>
+        {% for genre in base %}
+            <li>
+                <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
+            </li>
+        {% empty %}
+            <li>No gener found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
     <form action="/search" method="get">
         <label>
             <input type="text" name="query" placeholder="Search...">
@@ -37,15 +51,6 @@
     </p>
     <nav>
         <ul>
-            <li><a href="{% url 'homepage' %}">Home</a></li>
-            <li><a href="{% url 'movie_list' genre.id %}">Movies</a></li>
-            <li><a href="{% url 'genre_list' %}">Genres</a>
-                <ul>
-                    <li><a href="{% url 'movie_list' genre.id %}">Action</a></li>
-                    <li><a href="{% url 'movie_list' genre.id %}">Comedy</a></li>
-                    <li><a href="{% url 'movie_list' genre.id %}">Drama</a></li>
-                    <li><a href="{% url 'movie_list' genre.id %}">Horror</a></li>
-                    <li><a href="{% url 'movie_list' genre.id %}">Thriller</a></li>
                     <!-- add more genre links -->
                 </ul>
             </li>
@@ -54,16 +59,6 @@
     <div class="search-bar">
         <!-- search bar HTML here -->
     </div>
-
-    <header>
-        {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}!</p>
-            <a href="{% url 'login' %}">Login</a>
-        {% else %}
-            <a href="{% url 'logout' %}">Logout</a>
-            <a href="{% url 'register' %}">Register</a>
-        {% endif %}
-    </header>
     <footer>
         <p>&copy; 2023 MOVIEMATRIX</p>
     </footer>
