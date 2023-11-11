@@ -1,11 +1,10 @@
 {% block content %}
 
-<p>{{genre_list}}</p>
+
 
     <ul>
         {% for genre in genre_list %}
             <li>
-                <p>{{ genre.name }}</p>
                 <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
             </li>
         {% empty %}

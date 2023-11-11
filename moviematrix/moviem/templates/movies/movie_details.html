@@ -1,6 +1,13 @@
-
 {% block content %}
-    <h2>{{ movie_data.title }}</h2>
-    <p>Overview: {{ movie_data.overview }}</p>
-    <p>Release Date: {{ movie_data.release_date }}</p>
+<h2>{{ movie_data.title }}</h2>
+<p>Overview: {{ movie_data.overview }}</p>
+<p>Release Date: {{ movie_data.release_date }}</p>
+<p>Poster: {{ movie_data.poster_path }}</p>
+
+{% if movie_data.poster_path %}
+<img src="https://image.tmdb.org/t/p/w185/{{ movie_data.poster_path }}" alt="{{ movie_data.title }} Poster">
+{% else %}
+<p>No poster available</p>
+{% endif %}
+
 {% endblock %}

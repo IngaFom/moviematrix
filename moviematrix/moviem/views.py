@@ -1,8 +1,10 @@
 import requests
+import random
 from django.shortcuts import render
 
 from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details
 from .models import Movie, Director, Actor, Genre
+
 
 def genre_list(request):
     results = fetch_genre_list()
@@ -18,8 +20,6 @@ def genre_list(request):
                   {'message': 'Error fetching genre data'})
 
 
-
-
 def movie_list(request, genre_id):
     results = fetch_movie_list()
 
@@ -32,13 +32,13 @@ def movie_list(request, genre_id):
             if genre_id in movie.get('genre_ids', []):
                 filtered_movies.append(movie)
 
-
         return render(request, 'movies/movie_list.html', {
             'movie_list_data': filtered_movies
         })
 
     return render(request, 'movies/movie_list.html',
                   {'message': 'Error fetching movie data'})
+
 
 def movie_details(request, movie_id):
     movie_details = fetch_movie_details(movie_id)
@@ -50,6 +50,7 @@ def movie_details(request, movie_id):
         })
 
     return render(request, 'movies/movie_details.html', {'message': 'Error fetching movie details'})
+
 
 def actors_data(request):
     api_key = '239e8e686b9eef955b92516a351c9286'
