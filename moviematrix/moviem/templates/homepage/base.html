@@ -19,7 +19,7 @@
             }
 
             100% {
-                transform: translateX(calc(-100% * 3)); /* Adjust the number of posters as needed */
+                transform: translateX(-70%); /* Adjust the number of posters as needed */
             }
         }
 
@@ -75,41 +75,41 @@
 </head>
 
 <body>
-    <header>
-        {% if user.is_authenticated %}
+<header>
+    {% if user.is_authenticated %}
         <p>Welcome, {{ user.username }}!</p>
         <a href="{% url 'logout' %}">Logout</a>
-        {% else %}
+    {% else %}
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'register' %}">Register</a>
-        {% endif %}
-    </header>
-    <div class="neon-container">
-        <h1 class="neonText">
-            MOVIEMATRIX
-        </h1>
-        <p class="neonText">
-            Your Favorite Movies
-        </p>
-    </div>
+    {% endif %}
+</header>
+<div class="neon-container">
+    <h1 class="neonText">
+        MOVIEMATRIX
+    </h1>
+    <p class="neonText">
+        Your Favorite Movies
+    </p>
+</div>
 
-    {% block content %}
+{% block content %}
     <ul>
         {% for genre in base %}
-        <li>
-            <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
-        </li>
+            <li>
+                <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
+            </li>
         {% empty %}
-        <li>No genre found</li>
+            <li>No genre found</li>
         {% endfor %}
     </ul>
 
     <div class="poster-container">
         <div class="posters">
             {% for poster in random_posters %}
-            <a href="{% url 'movie_details' poster.id %}" class="poster">
-                <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
-            </a>
+                <a href="{% url 'movie_details' poster.id %}" class="poster">
+                    <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
+                </a>
             {% endfor %}
         </div>
     </div>
@@ -136,11 +136,11 @@
             });
         });
     </script>
-    {% endblock %}
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2023 MOVIEMATRIX</p>
-    </footer>
+<footer>
+    <p>&copy; 2023 MOVIEMATRIX</p>
+</footer>
 
 </body>
 
