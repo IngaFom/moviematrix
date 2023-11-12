@@ -12,12 +12,14 @@ from .models import Movie, Director, Actor, Genre
 
 def base(request):
     results = fetch_genre_list()
-    movie_results = fetch_movie_list()
+
+    for page_number in range(1, 10):
+        movie_results = fetch_movie_list(page=page_number)
 
     if results.status_code == 200 and movie_results.status_code == 200:
         genre_data = results.json()
         movie_data = movie_results.json().get('results', [])
-        random_posters = sample(movie_data, 5)
+        random_posters = sample(movie_data, 20)
 
         return render(request, 'homepage/base.html', {
             'base': genre_data.get('genres', []),
@@ -42,19 +44,6 @@ def movie_list(request, genre_id):
             all_movies.extend(filtered_movies)
 
     return render(request, 'movies/movie_list.html', {'movie_list_data': all_movies})
-
-
-def cast_list(request, movie_id):
-    cast_list = fetch_actors_data(movie_id)
-
-    if cast_list.status_code == 200:
-        actors = cast_list.json().get('cast', [])
-
-        return render(request, 'movies/cast_list.html', {
-            'actors': actors
-        })
-
-    return render(request, 'movies/cast_list.html', {'message': 'Error fetching actors data'})
 
 
 def movie_details(request, movie_id):
@@ -103,4 +92,3 @@ def user_login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'homepage/login.html', {'form': form})
-
