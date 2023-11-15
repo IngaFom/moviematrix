@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Search Results for "{{ query }}"</h2>
+
+  {% if results %}
+    <ul>
+      {% for result in results %}
+        <li><a href="{% url 'movie_details' result.id %}">{{ result.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{{ message }}</p>
+  {% endif %}
+{% endblock %}

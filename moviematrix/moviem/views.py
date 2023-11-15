@@ -10,6 +10,18 @@ from .forms import CustomUserCreationForm
 from .models import Movie, Director, Actor, Genre
 
 
+def search_tmdb(query):
+    api_key = '239e8e686b9eef955b92516a351c9286'
+    base_url = 'https://api.themoviedb.org/3/search/movie'
+    params = {
+        'api_key': api_key,
+        'query': query,
+    }
+    response = requests.get(base_url, params=params)
+    data = response.json()
+    return data.get('results', [])
+
+
 def base(request):
     results = fetch_genre_list()
 
@@ -28,6 +40,20 @@ def base(request):
 
     return render(request, 'homepage/base.html',
                   {'message': 'Error fetching genre data'})
+
+
+def movie_search(request):
+    query = request.GET.get('q', '')
+
+    if query:
+        # Use the TMDb API to search for movies based on the query
+        search_results = search_tmdb(query)  # You may need to implement the search_tmdb function
+
+        if search_results:
+            return render(request, 'movies/search_results.html', {'results': search_results, 'query': query})
+
+    return render(request, 'movies/search_results.html', {'message': 'No results found', 'query': query})
+
 
 
 def movie_list(request, genre_id):

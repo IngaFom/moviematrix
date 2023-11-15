@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    {% include 'movies/search_form.html' %}
 <header>
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.username }}!</p>
@@ -52,16 +53,7 @@
         </div>
     </div>
 
-    <div class="search-bar">
-        <form action="/search" method="get">
-            <label>
-                <input type="text" name="query" placeholder="Search...">
-            </label>
-            <button type="submit">Search</button>
-        </form>
-    </div>
-
-    <script>
+     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const posters = document.querySelector(".posters");
 
