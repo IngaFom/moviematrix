@@ -7,6 +7,7 @@ from .views import register, user_login, movie_search, all_movies, all_genres, s
 
 urlpatterns = [
     path('', views.base, name='base'),
+    path('profile/', views.profile, name='profile'),
     path('movie_list/<int:genre_id>', views.movie_list, name='movie_list'),
     path('movie_details/<int:movie_id>', views.movie_details, name='movie_details'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -18,4 +19,3 @@ urlpatterns = [
     path('movie/<int:movie_id>/', single_movie, name='single_movie'),
     path('genre/<int:genre_id>/', single_genre, name='single_genre'),
 ]
-
