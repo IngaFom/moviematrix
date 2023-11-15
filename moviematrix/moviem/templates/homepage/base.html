@@ -14,45 +14,45 @@
 </head>
 
 <body>
-<label class="hamburger-menu">
-    <input type="checkbox"/>
-</label>
-<aside class="sidebar">
-    <nav>
-        <div>
-            <a href="{%  url 'base' %}">Home</a>
-            <a href="{%  url 'profile' %}">Profile</a>
-            <a href="{%  url 'all_movies' %}">All Movies</a>
-            <a href="{%  url 'all_genres' %}">All Categories</a>
-        </div>
-
-
-        {% if user.is_authenticated %}
+    <label class="hamburger-menu">
+        <input type="checkbox" />
+    </label>
+    <aside class="sidebar">
+        <nav>
             <div>
-                <p>Welcome, {{ user.username }}!</p>
-                <a href="{% url 'logout' %}">Logout</a>
-            </div>
-        {% else %}
-            <div>
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-            </div>
-        {% endif %}
+                <a href="{% url 'base' %}">Home</a>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="#" id="allCategoriesLink">All Categories</a>
 
-        <div>
-            <h2>Genres</h2>
-            <ul>
-                {% for genre in base %}
-                    <li>
-                        <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
-                    </li>
-                {% empty %}
-                    <li>No genre found</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </nav>
-</aside>
+                <!-- Submenu for All Categories -->
+                <div id="allCategoriesSubMenu" style="display: none;">
+                    <h2>Genres</h2>
+                    <ul>
+                        {% for genre in base %}
+                            <li>
+                                <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
+                            </li>
+                        {% empty %}
+                            <li>No genre found</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+            {% if user.is_authenticated %}
+                <div>
+                    <p>Welcome, {{ user.username }}!</p>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            {% else %}
+                <div>
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                </div>
+            {% endif %}
+        </nav>
+    </aside>
 
 {% include 'movies/search_form.html' %}
 
@@ -80,6 +80,7 @@
         </div>
     </div>
 
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const posters = document.querySelector(".posters");
@@ -93,6 +94,17 @@
             });
         });
     </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const allCategoriesLink = document.getElementById("allCategoriesLink");
+                const allCategoriesSubMenu = document.getElementById("allCategoriesSubMenu");
+
+                allCategoriesLink.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    allCategoriesSubMenu.style.display = (allCategoriesSubMenu.style.display === "none") ? "block" : "none";
+                });
+            });
+        </script>
 {% endblock %}
 
 <footer>
