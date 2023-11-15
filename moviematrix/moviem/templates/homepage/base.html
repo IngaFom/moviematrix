@@ -7,42 +7,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
-    <link href="https://fonts.googleapis.com/css2?family=
-    Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300&display=swap"
+          rel="stylesheet">
     <!-- Link to CSS file -->
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 
 <body>
-    {% include 'movies/search_form.html' %}
+<label class="hamburger-menu">
+    <input type="checkbox"/>
+</label>
+<aside class="sidebar">
+    <nav>
+        <div>
+            <a href="{%  url 'base' %}">Home</a>
+            <a href="{%  url 'profile' %}">Profile</a>
+            <a href="{%  url 'all_movies' %}">All Movies</a>
+            <a href="{%  url 'all_genres' %}">All Categories</a>
+        </div>
+
+
+        {% if user.is_authenticated %}
+            <div>
+                <p>Welcome, {{ user.username }}!</p>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            </div>
+        {% endif %}
+
+        <div>
+            <h2>Genres</h2>
+            <ul>
+                {% for genre in base %}
+                    <li>
+                        <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
+                    </li>
+                {% empty %}
+                    <li>No genre found</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+</aside>
+
+{% include 'movies/search_form.html' %}
+
 <header>
-    {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Register</a>
-    {% endif %}
+    <div class="neon-container">
+        <h1 class="neonText">
+            MOVIEMATRIX
+        </h1>
+        <p class="neonText">
+            Your Favorite Movies
+        </p>
+    </div>
 </header>
-<div class="neon-container">
-    <h1 class="neonText">
-        MOVIEMATRIX
-    </h1>
-    <p class="neonText">
-        Your Favorite Movies
-    </p>
-</div>
 
 {% block content %}
-    <ul>
-        {% for genre in base %}
-            <li>
-                <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
-            </li>
-        {% empty %}
-            <li>No genre found</li>
-        {% endfor %}
-    </ul>
+    <!-- Your content goes here -->
 
     <div class="poster-container">
         <div class="posters">
@@ -54,7 +80,7 @@
         </div>
     </div>
 
-     <script>
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const posters = document.querySelector(".posters");
 
