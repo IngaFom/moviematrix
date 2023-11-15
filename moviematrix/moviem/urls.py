@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from . import views
-from .views import register, user_login
+from .views import register, user_login, movie_search
 
 urlpatterns = [
     path('', views.base, name='base'),
@@ -12,5 +12,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', register, name='register'),
     path('login/', user_login, name='login'),
+    path('search/', movie_search, name='movie_search'),
 ]
 
