@@ -1,3 +1,5 @@
+
+
 @keyframes slideRight {
     0% {
         transform: translateX(0);
@@ -9,7 +11,9 @@
 }
 
 body {
-    background-image: url('https://images.leadconnectorhq.com/image/f_webp/q_80/r_768/u_https://assets.cdn.filesafe.space/zqdTo1x3PIK4HeALRHNQ/media/6318f9e44bf09a573f70db74.png');
+    background-image: url('matrix.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     font-size: 18px;
     font-family: "Roboto Light", sans-serif;
     margin: 0; /* Remove default margin to make the neon text flush with the edges */
