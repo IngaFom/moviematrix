@@ -1,6 +1,6 @@
 import requests
 from random import sample
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -46,14 +46,34 @@ def movie_search(request):
     query = request.GET.get('q', '')
 
     if query:
-        # Use the TMDb API to search for movies based on the query
-        search_results = search_tmdb(query)  # You may need to implement the search_tmdb function
+
+        search_results = search_tmdb(query)
 
         if search_results:
             return render(request, 'movies/search_results.html', {'results': search_results, 'query': query})
 
     return render(request, 'movies/search_results.html', {'message': 'No results found', 'query': query})
 
+
+
+def all_movies(request):
+    movies = Movie.objects.all()
+    return render(request, 'movies/all_movies.html', {'movies': movies})
+
+
+def all_genres(request):
+    genres = Genre.objects.all()
+    return render(request, 'movies/all_genres.html', {'genres': genres})
+
+
+def single_movie(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    return render(request, 'movies/single_movie.html', {'movie': movie})
+
+
+def single_genre(request, genre_id):
+    genre = get_object_or_404(Genre, id=genre_id)
+    return render(request, 'movies/single_genre.html', {'genre': genre})
 
 
 def movie_list(request, genre_id):
