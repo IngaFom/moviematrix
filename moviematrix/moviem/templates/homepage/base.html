@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
     <label class="hamburger-menu">
         <input type="checkbox" />
     </label>
@@ -22,6 +23,19 @@
                 <a href="{% url 'base' %}">Home</a>
                 <a href="{% url 'profile' %}">Profile</a>
                 <a href="#" id="allCategoriesLink">All Categories</a>
+
+<label class="hamburger-menu" for="menu-toggle">
+    <input type="checkbox" id="menu-toggle"/>
+</label>
+<aside class="sidebar">
+    <nav>
+        <div>
+            <a href="{%  url 'base' %}">Home</a>
+            <a href="{%  url 'profile' %}">Profile</a>
+            <a href="{%  url 'all_movies' %}">All Movies</a>
+            <a href="{%  url 'all_genres' %}">All Categories</a>
+        </div>
+
 
                 <div id="allCategoriesSubMenu" style="display: none;">
                     <h2>Genres</h2>
