@@ -13,7 +13,7 @@
   --bar-width: 60px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
-  --foreground: #333;
+  --foreground: #1f51ff;
   --hamburger-margin: 8px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
@@ -75,6 +75,7 @@ body {
   transition: opacity var(--animation-timing), width var(--animation-timing),
   rotate var(--animation-timing), translate var(--animation-timing),
   background-color var(--animation-timing);
+
 }
 
 .hamburger-menu input {
