@@ -9,7 +9,6 @@
     <title>{% block title %}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300&display=swap"
           rel="stylesheet">
-    <!-- Link to CSS file -->
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 
@@ -24,7 +23,6 @@
                 <a href="{% url 'profile' %}">Profile</a>
                 <a href="#" id="allCategoriesLink">All Categories</a>
 
-                <!-- Submenu for All Categories -->
                 <div id="allCategoriesSubMenu" style="display: none;">
                     <h2>Genres</h2>
                     <ul>
@@ -68,7 +66,6 @@
 </header>
 
 {% block content %}
-    <!-- Your content goes here -->
 
     <div class="poster-container">
         <div class="posters">
@@ -79,8 +76,6 @@
             {% endfor %}
         </div>
     </div>
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const posters = document.querySelector(".posters");
@@ -93,8 +88,6 @@
                 this.classList.remove("paused");
             });
         });
-    </script>
-        <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const allCategoriesLink = document.getElementById("allCategoriesLink");
                 const allCategoriesSubMenu = document.getElementById("allCategoriesSubMenu");
@@ -104,7 +97,7 @@
                     allCategoriesSubMenu.style.display = (allCategoriesSubMenu.style.display === "none") ? "block" : "none";
                 });
             });
-        </script>
+    </script>
 {% endblock %}
 
 <footer>
