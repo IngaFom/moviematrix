@@ -200,6 +200,7 @@ body {
   min-height: 25vh;
 }
 
+
 .hamburger-menu:has(input:checked) + .sidebar {
   translate: 0;
 }
