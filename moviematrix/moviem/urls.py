@@ -1,6 +1,6 @@
 
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
 
 from . import views
 from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre
@@ -18,4 +18,8 @@ urlpatterns = [
     path('all_genres/', all_genres, name='all_genres'),
     path('movie/<int:movie_id>/', single_movie, name='single_movie'),
     path('genre/<int:genre_id>/', single_genre, name='single_genre'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
