@@ -7,7 +7,12 @@ from django.contrib.auth.decorators import login_required
 
 from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data
 from .forms import CustomUserCreationForm
-from .models import Movie, Director, Actor, Genre
+from .models import Movie, Director, Actor, Genre, UserProfile
+
+
+def profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'profile.html', {'user_profile': user_profile})
 
 
 def search_tmdb(query):
