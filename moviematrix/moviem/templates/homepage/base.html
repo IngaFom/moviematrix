@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +10,7 @@
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
-
 <body>
-
     <label class="hamburger-menu">
         <input type="checkbox" />
     </label>
@@ -23,20 +20,6 @@
                 <a href="{% url 'base' %}">Home</a>
                 <a href="{% url 'profile' %}">Profile</a>
                 <a href="#" id="allCategoriesLink">All Categories</a>
-
-<label class="hamburger-menu" for="menu-toggle">
-    <input type="checkbox" id="menu-toggle"/>
-</label>
-<aside class="sidebar">
-    <nav>
-        <div>
-            <a href="{%  url 'base' %}">Home</a>
-            <a href="{%  url 'profile' %}">Profile</a>
-            <a href="{%  url 'all_movies' %}">All Movies</a>
-            <a href="{%  url 'all_genres' %}">All Categories</a>
-        </div>
-
-
                 <div id="allCategoriesSubMenu" style="display: none;">
                     <h2>Genres</h2>
                     <ul>
@@ -49,10 +32,7 @@
                         {% endfor %}
                     </ul>
                 </div>
-    </nav>
-</aside>
             </div>
-
             {% if user.is_authenticated %}
                 <div>
                     <p>Welcome, {{ user.username }}!</p>
@@ -66,9 +46,7 @@
             {% endif %}
         </nav>
     </aside>
-
 {% include 'movies/search_form.html' %}
-
 <header>
     <div class="neon-container">
         <h1 class="neonText">
@@ -79,9 +57,7 @@
         </p>
     </div>
 </header>
-
 {% block content %}
-
     <div class="poster-container">
         <div class="posters">
             {% for poster in random_posters %}
@@ -94,11 +70,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const posters = document.querySelector(".posters");
-
             posters.addEventListener("mouseenter", function () {
                 this.classList.add("paused");
             });
-
             posters.addEventListener("mouseleave", function () {
                 this.classList.remove("paused");
             });
@@ -106,7 +80,6 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const allCategoriesLink = document.getElementById("allCategoriesLink");
                 const allCategoriesSubMenu = document.getElementById("allCategoriesSubMenu");
-
                 allCategoriesLink.addEventListener("click", function (event) {
                     event.preventDefault();
                     allCategoriesSubMenu.style.display = (allCategoriesSubMenu.style.display === "none") ? "block" : "none";
@@ -114,11 +87,8 @@
             });
     </script>
 {% endblock %}
-
 <footer>
     <p>&copy; 2023 MOVIEMATRIX</p>
 </footer>
-
 </body>
-
 </html>
