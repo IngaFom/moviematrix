@@ -4,11 +4,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data
 from .forms import CustomUserCreationForm
 from .models import Movie, Director, Actor, Genre
-
+from django.views.generic import TemplateView
 
 def search_tmdb(query):
     api_key = '239e8e686b9eef955b92516a351c9286'
@@ -135,3 +135,6 @@ def user_login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'homepage/login.html', {'form': form})
+
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'homepage/profile.html'

@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from . import views
-from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre
+from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, ProfileView
 
 urlpatterns = [
     path('', views.base, name='base'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('all_genres/', all_genres, name='all_genres'),
     path('movie/<int:movie_id>/', single_movie, name='single_movie'),
     path('genre/<int:genre_id>/', single_genre, name='single_genre'),
+    path('profile/', ProfileView.as_view(), name='profile'),
 ]
