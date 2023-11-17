@@ -63,7 +63,7 @@ ROOT_URLCONF = 'moviematrix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "moviem" / "templates" / "homepage"],
+        'DIRS': [BASE_DIR / "moviem" / "templates" / "homepage" / "registration" ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +137,20 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "/login/"
+
+
+# Use console backend for testing
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Set the sender email address
+DEFAULT_FROM_EMAIL = 'webmaster@example.com'
+# Set the email server settings for production
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'your-smtp-server.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'your-email@example.com'
+# EMAIL_HOST_PASSWORD = 'your-email-password'
+
+
+SITE_ID = 1
+

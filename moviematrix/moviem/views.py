@@ -7,8 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data
 from .forms import CustomUserCreationForm
+
 from .models import Movie, Director, Actor, Genre
 from django.views.generic import TemplateView
+from .models import Movie, Director, Actor, Genre, UserProfile
+
+
+def profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'profile.html', {'user_profile': user_profile})
+
+
 
 def search_tmdb(query):
     api_key = '239e8e686b9eef955b92516a351c9286'
