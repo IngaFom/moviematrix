@@ -10,6 +10,7 @@
   --neon-text-size: 40px;
   --background-image: url('wall2.jpg');
   --neon-text-size-1: 25px;
+  --neon-text-size-2: 25px;
   --bar-width: 60px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
@@ -193,4 +194,17 @@ body {
 }
 #allCategoriesSubMenu li {
     margin-bottom: 5px;
+}
+body {
+  color: blue;
+  font-family: "Roboto Light", sans-serif;
+  font-size: var(--neon-text-size-2);
+}
+.custom-button {
+  font-size: 20px;
+  padding: 5px;
+}
+.custom-button {
+  font-size: 20px;
+  padding: 5px;
 }
