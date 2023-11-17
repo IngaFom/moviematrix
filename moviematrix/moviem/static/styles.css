@@ -9,12 +9,13 @@
   0 0 92px #5271ff, 0 0 102px #5271ff, 0 0 151px #5271ff;
   --neon-text-size: 40px;
   --background-image: url('wall2.jpg');
+  -moz-background-size: cover;
   --neon-text-size-1: 25px;
   --neon-text-size-2: 25px;
   --bar-width: 60px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
-  --foreground: #333;
+  --foreground: #1f51ff;
   --hamburger-margin: 8px;
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
@@ -119,7 +120,7 @@ body {
 }
 .hamburger-menu:has(input:checked) {
   --foreground: white;
-  --background: #333;
+  --background: #1f51ff;
 }
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
