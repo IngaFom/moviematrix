@@ -136,6 +136,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = "/login/"
+
 
 # Use console backend for testing
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -151,3 +153,4 @@ DEFAULT_FROM_EMAIL = 'webmaster@example.com'
 
 
 SITE_ID = 1
+

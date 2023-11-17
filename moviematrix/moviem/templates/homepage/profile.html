@@ -14,9 +14,10 @@
   <ul>
     <li>Username: {{ user.username }}</li>
     <li>Email: {{ user.email }}</li>
-    <!-- Add more user-specific details here -->
   </ul>
-  <a href="{% url 'base.html' %}" class="btn btn-primary">Go to Main Page</a>
+  <a href="{% url 'base' %}" class="btn btn-primary">Go to Main Page</a>
+{% else %}
+        <p>You need to <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to view your profile.</p>
+    {% endif %}
 
-  <!-- You can add more content specific to the user's profile -->
 {% endblock %}
