@@ -9,7 +9,7 @@
   0 0 92px #5271ff, 0 0 102px #5271ff, 0 0 151px #5271ff;
   --neon-text-size: 40px;
   --background-image: url('wall2.jpg');
-
+  --neon-text-size-1: 25px;
   --bar-width: 60px;
   --bar-height: 8px;
   --hamburger-gap: 6px;
@@ -18,7 +18,6 @@
   --animation-timing: 200ms ease-in-out;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
-
 body {
   margin: 0;
   background: var(--main-background) var(--background-image) no-repeat;
@@ -26,7 +25,6 @@ body {
   font-size: 18px;
   font-family: "Roboto Light", sans-serif;
 }
-
 .neon-container {
   position: fixed;
   top: 0;
@@ -35,14 +33,12 @@ body {
   text-align: right;
   z-index: 1000;
 }
-
 .neonText {
   font-family: 'Roboto Light', cursive;
   color: var(--neon-text-color);
   text-shadow: var(--neon-text-shadow);
   font-size: var(--neon-text-size);
 }
-
 .hamburger-menu {
   display: flex;
   align-items: center;
@@ -51,22 +47,17 @@ body {
   top: 10px; /* Adjust this value to increase the gap */
   left: var(--hamburger-margin);
 }
-
 .hamburger-menu::before,
 .hamburger-menu::after,
-
 .hamburger-menu .bar:nth-child(1) {
   transform: translateY(3px);
 }
-
 .hamburger-menu .bar:nth-child(2) {
   transform: translateY(calc(var(--bar-height) + var(--hamburger-gap)));
 }
-
 .hamburger-menu .bar:nth-child(3) {
   transform: rotate(-45deg) translateY(calc(var(--bar-height) / 2));
 }
-
 .bar {
   width: var(--bar-width);
   height: var(--bar-height);
@@ -76,58 +67,45 @@ body {
   rotate var(--animation-timing), translate var(--animation-timing),
   background-color var(--animation-timing);
 }
-
 .hamburger-menu input {
   display: none;
 }
-
 .hamburger-menu:has(input:checked) .bar:nth-child(1),
 .hamburger-menu:has(input:checked) .bar:nth-child(3) {
   opacity: 0;
   width: 0;
 }
-
 .hamburger-menu:has(input:checked) .bar:nth-child(2) {
   transform: rotate(45deg), translate(0, calc(var(--bar-height) / -2));
   width: var(--x-width);
-
 }
-
 .neonText p {
   font-size: 18px;
 }
-
 .poster-container {
   overflow: hidden;
 }
-
 .posters {
   display: flex;
   animation: slideRight 30s linear infinite;
 }
-
 .poster {
   flex: 0 0 auto;
   margin-right: 10px;
 }
-
 .posters.paused {
   animation-play-state: paused;
 }
-
 @keyframes slideRight {
   0% {
     transform: translateX(0);
   }
-
   100% {
     transform: translateX(-70%);
   }
 }
-
 .hamburger-menu {
   --x-width: calc(var(--hamburger-height) * 1.41421356237);
-
   display: flex;
   flex-direction: column;
   gap: var(--hamburger-gap);
@@ -138,19 +116,16 @@ body {
   z-index: 2;
   cursor: pointer;
 }
-
 .hamburger-menu:has(input:checked) {
   --foreground: white;
   --background: #333;
 }
-
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
   border: 1px solid var(--background);
   box-shadow: 0 0 0 1px var(--foreground);
 }
-
 .hamburger-menu::before,
 .hamburger-menu::after,
 .hamburger-menu input {
@@ -164,7 +139,6 @@ body {
   rotate var(--animation-timing), translate var(--animation-timing),
   background-color var(--animation-timing);
 }
-
 .hamburger-menu input {
   appearance: none;
   padding: 0;
@@ -172,24 +146,20 @@ body {
   outline: none;
   pointer-events: none;
 }
-
 .hamburger-menu:has(input:checked)::before {
   rotate: 45deg;
   width: var(--x-width);
   translate: 0 calc(var(--bar-height) / -2);
 }
-
 .hamburger-menu:has(input:checked)::after {
   rotate: -45deg;
   width: var(--x-width);
   translate: 0 calc(var(--bar-height) / 2);
 }
-
 .hamburger-menu input:checked {
   opacity: 0;
   width: 0;
 }
-
 .sidebar {
   transition: translate var(--animation-timing);
   translate: -100%;
@@ -199,7 +169,28 @@ body {
   max-width: 10rem;
   min-height: 25vh;
 }
-
 .hamburger-menu:has(input:checked) + .sidebar {
   translate: 0;
+}
+.sidebar nav div a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    font-family: 'Roboto Light', cursive;
+    color: var(--neon-text-color);
+    font-size: var(--neon-text-size-1);
+}
+#allCategoriesSubMenu {
+    padding-left: 20px;
+}
+#allCategoriesSubMenu h2 {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+#allCategoriesSubMenu ul {
+    list-style-type: none;
+    padding: 0;
+}
+#allCategoriesSubMenu li {
+    margin-bottom: 5px;
 }
