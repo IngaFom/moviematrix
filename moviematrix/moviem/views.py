@@ -55,7 +55,6 @@ def movie_search(request):
     return render(request, 'movies/search_results.html', {'message': 'No results found', 'query': query})
 
 
-
 def all_movies(request):
     movies = Movie.objects.all()
     return render(request, 'movies/all_movies.html', {'movies': movies})
@@ -107,8 +106,6 @@ def movie_details(request, movie_id):
                 'movie_data': movie_data,
                 'actors': actors
             })
-
-    return render(request, 'movies/movie_details.html', {'message': 'Error fetching movie details'})
 
 
 def register(request):
