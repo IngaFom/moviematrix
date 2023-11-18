@@ -248,12 +248,12 @@ footer {
     width: 100%;
     background-color: transparent;
     padding: 5px;
-    text-align: center;
+    text-align: left;
 }
 
 .search-box {
     border: transparent;
-    border-radius: 15px;/* Border radius for rounded corners */
+    border-radius: 15px; /* Border radius for rounded corners */
     padding: 8px; /* Padding inside the search box */
     font-size: 16px; /* Font size */
     width: 200px; /* Set a specific width or adjust as needed */
@@ -268,4 +268,55 @@ footer {
     padding: 8px 12px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.movie-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: -50px; /* Adjust as needed for spacing around the content */
+}
+
+.poster-container {
+    margin-bottom: 50px; /* Adjust as needed for spacing between poster and movie info */
+}
+
+.poster-container img {
+    max-width: 100%; /* Ensure the poster doesn't exceed its container's width */
+    height: auto; /* Maintain the aspect ratio of the poster */
+}
+
+.movie-info {
+    text-align: center;
+}
+
+.movie-info h2 {
+    font-size: 50px;
+    margin-top: 15px; /* Adjust as needed for the movie title */
+}
+
+.movie-info p {
+    margin: 10px 0; /* Adjust as needed for spacing between paragraphs */
+}
+
+.movie-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.movie-info li {
+    margin-bottom: 5px; /* Adjust as needed for spacing between list items */
+}
+
+ul {
+    margin-top: -35px;
+    padding-top: -125px;
+}
+
+form {
+    margin-top: -75px;
+    padding-top: 35px;
+    margin-left: 35px;
+    padding-left: 35px;
 }
