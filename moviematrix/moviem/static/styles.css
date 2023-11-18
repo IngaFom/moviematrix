@@ -1,214 +1,271 @@
 :root {
-  --hamburger-gap-color: #1f51ff;
-  --main-background: #5271ff;
-  --main-color: #fff;
-  --hover-color: #1f51ff;
-  --neon-text-color: #1f51ff;
-  --neon-text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff,
-  0 0 42px #5271ff, 0 0 82px #5271ff,
-  0 0 92px #5271ff, 0 0 102px #5271ff, 0 0 151px #5271ff;
-  --neon-text-size: 40px;
-  --background-image: url('wall2.jpg');
-  -moz-background-size: cover;
-  --neon-text-size-1: 25px;
-  --neon-text-size-2: 25px;
-  --bar-width: 60px;
-  --bar-height: 8px;
-  --hamburger-gap: 6px;
-  --foreground: #1f51ff;
-  --hamburger-margin: 8px;
-  --animation-timing: 200ms ease-in-out;
-  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+    --hamburger-gap-color: #1f51ff;
+    --main-color: #fff;
+    --hover-color: #fff;
+    --neon-text-color: #fff;
+    --neon-text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff,
+    0 0 42px #5271ff, 0 0 82px #5271ff,
+    0 0 92px #5271ff, 0 0 102px #5271ff, 0 0 151px #5271ff;
+    --neon-text-size: 40px;
+    --background-image: url('wall2.jpg');
+    --neon-text-size-1: 25px;
+    --neon-text-size-2: 25px;
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --hamburger-gap: 6px;
+    --foreground: #1f51ff;
+    --hamburger-margin: 8px;
+    --animation-timing: 200ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
+
 body {
-  margin: 0;
-  background: var(--main-background) var(--background-image) no-repeat;
-  background-size: cover;
-  font-size: 18px;
-  font-family: "Roboto Light", sans-serif;
+    margin: 0;
+    background: var(--background-image);
+    background-size: cover;
+    font-size: 150%;
+    font-family: "Times New Roman", sans-serif;
 }
+
 .neon-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 20px;
-  text-align: right;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    text-align: right;
+    z-index: 1000;
 }
+
 .neonText {
-  font-family: 'Roboto Light', cursive;
-  color: var(--neon-text-color);
-  text-shadow: var(--neon-text-shadow);
-  font-size: var(--neon-text-size);
+    font-family: "Times New Roman", sans-serif;
+    color: var(--neon-text-color);
+    text-shadow: var(--neon-text-shadow);
+    font-size: var(--neon-text-size);
 }
+
 .hamburger-menu {
-  display: flex;
-  align-items: center;
-  gap: var(--hamburger-gap);
-  cursor: pointer;
-  top: 10px; /* Adjust this value to increase the gap */
-  left: var(--hamburger-margin);
+    display: flex;
+    align-items: center;
+    gap: var(--hamburger-gap);
+    cursor: pointer;
+    top: 10px;
+    left: var(--hamburger-margin);
 }
+
 .hamburger-menu::before,
 .hamburger-menu::after,
 .hamburger-menu .bar:nth-child(1) {
-  transform: translateY(3px);
+    transform: translateY(3px);
 }
+
 .hamburger-menu .bar:nth-child(2) {
-  transform: translateY(calc(var(--bar-height) + var(--hamburger-gap)));
+    transform: translateY(calc(var(--bar-height) + var(--hamburger-gap)));
 }
+
 .hamburger-menu .bar:nth-child(3) {
-  transform: rotate(-45deg) translateY(calc(var(--bar-height) / 2));
+    transform: rotate(-45deg) translateY(calc(var(--bar-height) / 2));
 }
+
 .bar {
-  width: var(--bar-width);
-  height: var(--bar-height);
-  background-color: var(--hamburger-gap-color); /* Update to use --hamburger-gap-color */
-  border-radius: 9999px;
-  transition: opacity var(--animation-timing), width var(--animation-timing),
-  rotate var(--animation-timing), translate var(--animation-timing),
-  background-color var(--animation-timing);
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--hamburger-gap-color);
+    border-radius: 9999px;
+    transition: opacity var(--animation-timing), width var(--animation-timing),
+    rotate var(--animation-timing), translate var(--animation-timing),
+    background-color var(--animation-timing);
 }
+
 .hamburger-menu input {
-  display: none;
+    display: none;
 }
+
 .hamburger-menu:has(input:checked) .bar:nth-child(1),
 .hamburger-menu:has(input:checked) .bar:nth-child(3) {
-  opacity: 0;
-  width: 0;
+    opacity: 0;
+    width: 0;
 }
+
 .hamburger-menu:has(input:checked) .bar:nth-child(2) {
-  transform: rotate(45deg), translate(0, calc(var(--bar-height) / -2));
-  width: var(--x-width);
+    transform: rotate(45deg), translate(0, calc(var(--bar-height) / -2));
+    width: var(--x-width);
 }
+
 .neonText p {
-  font-size: 18px;
+    font-size: 18px;
+    color: white;
+    font-family: "Times New Roman", sans-serif;
 }
+
 .poster-container {
-  overflow: hidden;
+    overflow: hidden;
 }
+
 .posters {
-  display: flex;
-  animation: slideRight 30s linear infinite;
+    display: flex;
+    animation: slideRight 30s linear infinite;
 }
+
 .poster {
-  flex: 0 0 auto;
-  margin-right: 10px;
+    flex: 0 0 auto;
+    margin-right: 10px;
 }
+
 .posters.paused {
-  animation-play-state: paused;
+    animation-play-state: paused;
 }
+
 @keyframes slideRight {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-70%);
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-70%);
+    }
 }
+
 .hamburger-menu {
-  --x-width: calc(var(--hamburger-height) * 1.41421356237);
-  display: flex;
-  flex-direction: column;
-  gap: var(--hamburger-gap);
-  width: max-content;
-  position: absolute;
-  top: var(--hamburger-margin);
-  left: var(--hamburger-margin);
-  z-index: 2;
-  cursor: pointer;
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    left: var(--hamburger-margin);
+    z-index: 2;
+    cursor: pointer;
 }
+
 .hamburger-menu:has(input:checked) {
-  --foreground: white;
-  --background: #1f51ff;
+    --foreground: white;
+    --background: #1f51ff;
 }
+
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
-  border: 1px solid var(--background);
-  box-shadow: 0 0 0 1px var(--foreground);
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
 }
+
 .hamburger-menu::before,
 .hamburger-menu::after,
 .hamburger-menu input {
-  content: "";
-  width: var(--bar-width);
-  height: var(--bar-height);
-  background-color: var(--foreground);
-  border-radius: 9999px;
-  transform-origin: left center;
-  transition: opacity var(--animation-timing), width var(--animation-timing),
-  rotate var(--animation-timing), translate var(--animation-timing),
-  background-color var(--animation-timing);
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--foreground);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing),
+    rotate var(--animation-timing), translate var(--animation-timing),
+    background-color var(--animation-timing);
 }
+
 .hamburger-menu input {
-  appearance: none;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  pointer-events: none;
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
 }
+
 .hamburger-menu:has(input:checked)::before {
-  rotate: 45deg;
-  width: var(--x-width);
-  translate: 0 calc(var(--bar-height) / -2);
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
 }
+
 .hamburger-menu:has(input:checked)::after {
-  rotate: -45deg;
-  width: var(--x-width);
-  translate: 0 calc(var(--bar-height) / 2);
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
 }
+
 .hamburger-menu input:checked {
-  opacity: 0;
-  width: 0;
+    opacity: 0;
+    width: 0;
 }
+
 .sidebar {
-  transition: translate var(--animation-timing);
-  translate: -100%;
-  padding: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem) 1rem 0.5rem;
-  background-color: transparent;
-  color: transparent;
-  max-width: 10rem;
-  min-height: 25vh;
+    transition: translate var(--animation-timing);
+    translate: -100%;
+    padding: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem) 1rem 0.5rem;
+    background-color: transparent;
+    color: transparent;
+    max-width: 10rem;
+    min-height: 25vh;
 }
+
 .hamburger-menu:has(input:checked) + .sidebar {
-  translate: 0;
+    translate: 0;
 }
+
 .sidebar nav div a {
     display: block;
     padding: 10px;
     text-decoration: none;
-    font-family: 'Roboto Light', cursive;
-    color: var(--neon-text-color);
-    font-size: var(--neon-text-size-1);
+    font-family: "Times New Roman", sans-serif;
+    color: white;
 }
+
 #allCategoriesSubMenu {
     padding-left: 20px;
 }
+
 #allCategoriesSubMenu h2 {
     margin-bottom: 5px;
     font-size: 16px;
 }
+
 #allCategoriesSubMenu ul {
     list-style-type: none;
     padding: 0;
 }
+
 #allCategoriesSubMenu li {
     margin-bottom: 5px;
 }
+
 body {
-  color: blue;
-  font-family: "Roboto Light", sans-serif;
-  font-size: var(--neon-text-size-2);
+    color: #ffffff;
+    font-family: "Times New Roman", sans-serif;
 }
+
 .custom-button {
-  font-size: 20px;
-  padding: 5px;
+    font-size: 20px;
+    padding: 5px;
 }
-.custom-button {
-  font-size: 20px;
-  padding: 5px;
-}
+
 .search-form {
-  margin-left: 100px;
+    margin-left: 100px;
+}
+
+footer {
+    position: fixed; /* Change this to your desired positioning method */
+    bottom: 0; /* Adjust as needed based on your layout */
+    width: 100%;
+    background-color: transparent;
+    padding: 5px;
+    text-align: center;
+}
+
+.search-box {
+    border: transparent;
+    border-radius: 15px;/* Border radius for rounded corners */
+    padding: 8px; /* Padding inside the search box */
+    font-size: 16px; /* Font size */
+    width: 200px; /* Set a specific width or adjust as needed */
+    margin-left: 100px; /* Adjust the left margin */
+    color: #000; /* Text color */
+}
+
+/* Additional styling for search button, if applicable */
+.search-button {
+    color: transparent;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
 }
