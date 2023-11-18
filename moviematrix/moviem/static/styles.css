@@ -271,15 +271,14 @@ footer {
 }
 
 .movie-details-container {
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: column;
-    padding: -50px; /* Adjust as needed for spacing around the content */
+    padding: 55px; /* Adjust as needed for spacing around the content */
 }
 
 .poster-container {
-    margin-bottom: 50px; /* Adjust as needed for spacing between poster and movie info */
+    margin-bottom: 100px; /* Adjust as needed for spacing between poster and movie info */
 }
 
 .poster-container img {
@@ -288,7 +287,7 @@ footer {
 }
 
 .movie-info {
-    text-align: center;
+    flex: auto;
 }
 
 .movie-info h2 {
@@ -308,6 +307,12 @@ footer {
 .movie-info li {
     margin-bottom: 5px; /* Adjust as needed for spacing between list items */
 }
+
+.poster {
+    max-width: 400px; /* Adjust the max-width of the poster */
+    margin-right: 150px; /* Adjust the margin between the poster and movie info */
+}
+
 
 ul {
     margin-top: -35px;
