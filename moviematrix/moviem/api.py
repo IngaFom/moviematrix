@@ -1,28 +1,38 @@
 import requests
+from django.conf import settings
 
 
-def fetch_genre_list():
-    api_key = '239e8e686b9eef955b92516a351c9286'
-    url = f"https://api.themoviedb.org/3/genre/movie/list?language=en&api_key={api_key}"
-    response = requests.get(url)
-    return response
+def fetch_api(request_type, **kwargs):
+    api_key = settings.API_KEY
+    base_url = "https://api.themoviedb.org/3/"
 
+    endpoints = {
+        "genre": "genre/movie/list",
+        "movie_list": "movie/popular",
+        "movie_details": "movie/{movie_id}",
+        "actors_data": "movie/{movie_id}/credits",
+        "search": "search/movie"
+    }
 
-def fetch_movie_list(page=1):
-    api_key = '239e8e686b9eef955b92516a351c9286'
-    url = f"https://api.themoviedb.org/3/movie/popular?language=en-US&page={page}&api_key={api_key}"
-    response = requests.get(url)
-    return response
+    endpoint_url = endpoints.get(request_type, "")
+    if not endpoint_url:
+        raise ValueError(f"Invalid request_type: {request_type}")
 
+    url = f"{base_url}{endpoint_url}?language=en-US&api_key={api_key}"
 
-def fetch_movie_details(movie_id):
-    api_key = '239e8e686b9eef955b92516a351c9286'
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?language=en-US&api_key={api_key}"
-    response = requests.get(url)
-    return response
+    if "{movie_id}" in endpoint_url and 'movie_id' in kwargs:
+        url = url.format(movie_id=kwargs['movie_id'])
 
-def fetch_actors_data(movie_id):
-    api_key = '239e8e686b9eef955b92516a351c9286'
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={api_key}"
-    response = requests.get(url)
-    return response
+    if 'page' in kwargs:
+        url += f"&page={kwargs['page']}"
+
+    if 'query' in kwargs:
+        url += f"&query={kwargs['query']}"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+        return {}
