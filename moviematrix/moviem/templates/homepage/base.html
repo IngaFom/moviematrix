@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 <body>
+    {% include 'movies/search_form.html' %}
     <label class="hamburger-menu">
         <input type="checkbox" />
     </label>
@@ -46,7 +47,7 @@
             {% endif %}
         </nav>
     </aside>
-{% include 'movies/search_form.html' %}
+
 <header>
     <div class="neon-container">
         <h1 class="neonText">
