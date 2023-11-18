@@ -4,9 +4,7 @@ from django.urls import path, include
 
 from . import views
 
-from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, ProfileView
-
-from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, profile
+from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, profile, ProfileView
 
 
 urlpatterns = [
