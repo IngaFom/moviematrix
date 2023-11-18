@@ -4,7 +4,11 @@ from django.urls import path, include
 
 from . import views
 
+from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, profile, ProfileView
+
+
 from .views import register, user_login, movie_search, profile, ProfileView
+
 
 urlpatterns = [
     path('', views.base, name='base'),

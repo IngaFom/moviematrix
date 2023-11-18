@@ -63,7 +63,7 @@ ROOT_URLCONF = 'moviematrix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "moviem" / "templates" / "homepage" / "registration" ],
+        'DIRS': [BASE_DIR / "moviem" / "templates" / "homepage" / "registration"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
