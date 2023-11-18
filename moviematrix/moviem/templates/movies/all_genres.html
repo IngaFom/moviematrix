@@ -1,6 +1,0 @@
-<h2>All Genres</h2>
-<ul>
-    {% for genre in genres %}
-        <li><a href="{% url 'single_genre' genre.id %}">{{ genre.name }}</a></li>
-    {% endfor %}
-</ul>
