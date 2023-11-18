@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .api import fetch_api
 from .forms import CustomUserCreationForm
 
-from .models import Movie, Director, Actor, Genre
 from django.views.generic import TemplateView
 from .models import Movie, Director, Actor, Genre, UserProfile
 
@@ -119,3 +118,26 @@ def user_login(request):
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'homepage/profile.html'
+
+
+def all_movies(request):
+    movies = Movie.objects.all()
+    return render(request, 'all_movies.html', {'movies': movies})
+
+
+# View to display all genres
+def all_genres(request):
+    genres = Genre.objects.all()
+    return render(request, 'all_genres.html', {'genres': genres})
+
+
+# View to display details of a single movie
+def single_movie(request, movie_id):
+    movie = get_object_or_404(Movie, pk=movie_id)
+    return render(request, 'single_movie.html', {'movie': movie})
+
+
+# View to display details of a single genre
+def single_genre(request, genre_id):
+    genre = get_object_or_404(Genre, pk=genre_id)
+    return render(request, 'single_genre.html', {'genre': genre})
