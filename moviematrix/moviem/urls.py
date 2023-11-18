@@ -4,10 +4,7 @@ from django.urls import path, include
 
 from . import views
 
-from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, ProfileView
-
-from .views import register, user_login, movie_search, all_movies, all_genres, single_movie, single_genre, profile
-
+from .views import register, user_login, movie_search, profile, ProfileView
 
 urlpatterns = [
     path('', views.base, name='base'),
@@ -18,10 +15,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', user_login, name='login'),
     path('search/', movie_search, name='movie_search'),
-    path('all_movies/', all_movies, name='all_movies'),
-    path('all_genres/', all_genres, name='all_genres'),
-    path('movie/<int:movie_id>/', single_movie, name='single_movie'),
-    path('genre/<int:genre_id>/', single_genre, name='single_genre'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
