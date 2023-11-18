@@ -5,7 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .api import fetch_movie_list, fetch_genre_list, fetch_movie_details, fetch_actors_data, fetch_api
+from .api import fetch_api
 from .forms import CustomUserCreationForm
 
 from .models import Movie, Director, Actor, Genre
@@ -18,28 +18,19 @@ def profile(request):
     return render(request, 'profile.html', {'user_profile': user_profile})
 
 
-def search_tmdb(query):
-    api_key = '239e8e686b9eef955b92516a351c9286'
-    base_url = 'https://api.themoviedb.org/3/search/movie'
-    params = {
-        'api_key': api_key,
-        'query': query,
-    }
-    response = requests.get(base_url, params=params)
-    data = response.json()
-    return data.get('results', [])
-
-
 def base(request):
-    results = fetch_genre_list()
+    results = fetch_api(request_type="genre")
 
+    all_movies = []
     for page_number in range(1, 10):
-        movie_results = fetch_movie_list(page=page_number)
+        movie_results = fetch_api(request_type="movie_list", page=page_number)
+        if movie_results.status_code == 200:
+            movie_data = movie_results.json().get('results', [])
+            all_movies.extend(movie_data)
 
-    if results.status_code == 200 and movie_results.status_code == 200:
-        genre_data = results.json()
-        movie_data = movie_results.json().get('results', [])
-        random_posters = sample(movie_data, 20)
+        if results.status_code == 200:
+            genre_data = results.json()
+            random_posters = sample(all_movies, 20)
 
         return render(request, 'homepage/base.html', {
             'base': genre_data.get('genres', []),
@@ -54,40 +45,21 @@ def movie_search(request):
     query = request.GET.get('q', '')
 
     if query:
+        search_results = fetch_api(request_type="search", query=query)
 
-        search_results = search_tmdb(query)
+        if search_results.status_code == 200:
+            search_data = search_results.json().get('results', [])
 
-        if search_results:
-            return render(request, 'movies/search_results.html', {'results': search_results, 'query': query})
+            return render(request, 'movies/search_results.html', {'results': search_data, 'query': query})
 
     return render(request, 'movies/search_results.html', {'message': 'No results found', 'query': query})
-
-
-def all_movies(request):
-    movies = Movie.objects.all()
-    return render(request, 'movies/all_movies.html', {'movies': movies})
-
-
-def all_genres(request):
-    genres = Genre.objects.all()
-    return render(request, 'movies/all_genres.html', {'genres': genres})
-
-
-def single_movie(request, movie_id):
-    movie = get_object_or_404(Movie, id=movie_id)
-    return render(request, 'movies/single_movie.html', {'movie': movie})
-
-
-def single_genre(request, genre_id):
-    genre = get_object_or_404(Genre, id=genre_id)
-    return render(request, 'movies/single_genre.html', {'genre': genre})
 
 
 def movie_list(request, genre_id):
     all_movies = []
 
     for page_number in range(1, 10):
-        results = fetch_movie_list(page=page_number)
+        results = fetch_api(request_type="movie_list", page=page_number)
 
         if results.status_code == 200:
             movie_data = results.json().get('results', [])
@@ -100,12 +72,12 @@ def movie_list(request, genre_id):
 
 
 def movie_details(request, movie_id):
-    movie_details = fetch_movie_details(movie_id)
+    movie_details = fetch_api(request_type="movie_details", movie_id=movie_id)
 
     if movie_details.status_code == 200:
         movie_data = movie_details.json()
 
-        actors_data = fetch_actors_data(movie_id)
+        actors_data = fetch_api(request_type="actors_data", movie_id=movie_id)
 
         if actors_data.status_code == 200:
             actors = actors_data.json().get('cast', [])

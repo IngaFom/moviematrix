@@ -61,6 +61,7 @@
     <div class="poster-container">
         <div class="posters">
             {% for poster in random_posters %}
+                    <a href="{% url 'movie_details' poster.id %}" class="poster">
                     <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
                 </a>
             {% endfor %}
