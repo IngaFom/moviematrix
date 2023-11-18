@@ -28,12 +28,11 @@ body {
 }
 
 .neon-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     padding: 20px;
     text-align: right;
-    z-index: 1000;
 }
 
 .neonText {
@@ -242,13 +241,15 @@ body {
     margin-left: 100px;
 }
 
-footer {
-    position: fixed; /* Change this to your desired positioning method */
-    bottom: 0; /* Adjust as needed based on your layout */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    background-color: transparent;
-    padding: 5px;
+    padding: 5px; /* Adjust padding as needed */
     text-align: left;
+    z-index: 1000;
+
 }
 
 .search-box {
@@ -257,7 +258,7 @@ footer {
     padding: 8px; /* Padding inside the search box */
     font-size: 16px; /* Font size */
     width: 200px; /* Set a specific width or adjust as needed */
-    margin-left: 100px; /* Adjust the left margin */
+    margin-left: 0; /* Adjust the left margin */
     color: #000; /* Text color */
 }
 
@@ -308,9 +309,10 @@ footer {
     margin-bottom: 5px; /* Adjust as needed for spacing between list items */
 }
 
+
 .poster {
     max-width: 400px; /* Adjust the max-width of the poster */
-    margin-right: 150px; /* Adjust the margin between the poster and movie info */
+    margin-right: 20px; /* Adjust the margin between the poster and movie info */
 }
 
 
