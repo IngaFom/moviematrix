@@ -16,7 +16,8 @@ def fetch_api(request_type, **kwargs):
 
     endpoint_url = endpoints.get(request_type, "")
     if not endpoint_url:
-        raise ValueError(f"Invalid request_type: {request_type}")
+        raise ValueError(f"Invalid request_type:"
+                         f" {request_type}")
 
     url = f"{base_url}{endpoint_url}?language=en-US&api_key={api_key}"
 
