@@ -282,7 +282,7 @@ body {
 
 
 .poster-container {
-    margin-bottom: 100px; /* Adjust as needed for spacing between poster and movie info */
+    margin-bottom: 200px; /* Adjust as needed for spacing between poster and movie info */
 }
 
 .poster-container img {
@@ -291,7 +291,13 @@ body {
 }
 
 .movie-info {
-    flex: auto;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.movie-rating {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .movie-info h2 {
