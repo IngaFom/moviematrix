@@ -21,13 +21,13 @@ def fetch_api(request_type, **kwargs):
     url = f"{base_url}{endpoint_url}?language=en-US&api_key={api_key}"
 
     if "{movie_id}" in endpoint_url and 'movie_id' in kwargs:
-        url = url.format(movie_id=kwargs['movie_id'])
+        url = url.format(movie_id=kwargs.get('movie_id'))
 
     if 'page' in kwargs:
-        url += f"&page={kwargs['page']}"
+        url += f"&page={kwargs.get('page')}"
 
     if 'query' in kwargs:
-        url += f"&query={kwargs['query']}"
+        url += f"&query={kwargs.get('query')}"
 
     try:
         response = requests.get(url)
