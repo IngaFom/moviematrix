@@ -276,8 +276,10 @@ body {
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
-    padding: 55px; /* Adjust as needed for spacing around the content */
+    padding: 135px; /* Adjust as needed for spacing around the content */
+    margin-top: -350px;
 }
+
 
 .poster-container {
     margin-bottom: 100px; /* Adjust as needed for spacing between poster and movie info */
@@ -312,8 +314,9 @@ body {
 
 
 .poster {
-    max-width: 400px; /* Adjust the max-width of the poster */
-    margin-right: 20px; /* Adjust the margin between the poster and movie info */
+    max-width: 200px; /* Adjust the max-width of the poster */
+    margin-right: 70px;
+    margin-left: -20px;/* Adjust the margin between the poster and movie info */
 }
 
 
