@@ -10,7 +10,27 @@
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
-<body>{% include 'movies/search_form.html' %}
+<body>
+        <div class="header-container">
+            <header>
+                <div class="neon-container">
+                    <h1 class="neonText">MOVIEMATRIX</h1>
+                    <p class="neonText">Your Favorite Movies</p>
+                </div>
+                <div class="user-container">
+                    {% if user.is_authenticated %}
+                        <p>Welcome, {{ user.username }}!</p>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                        <span class="space-between"></span>
+                        <a href="{% url 'register' %}">Register</a>
+                    {% endif %}
+                </div>
+            </header>
+        </div>
+
+        {% include 'movies/search_form.html' %}
         <label class="hamburger-menu">
             <input type="checkbox" />
         </label>
@@ -38,26 +58,10 @@
                     <p>Welcome, {{ user.username }}!</p>
                     <a href="{% url 'logout' %}">Logout</a>
                 </div>
-            {% else %}
-                <div>
-                    <a href="{% url 'login' %}">Login</a>
-                    <a href="{% url 'register' %}">Register</a>
-                </div>
+
             {% endif %}
         </nav>
     </aside>
-
-<header>
-    <div class="neon-container">
-
-        <h1 class="neonText">
-            MOVIEMATRIX
-        </h1>
-        <p class="neonText">
-            Your Favorite Movies
-        </p>
-    </div>
-</header>
 {% block content %}
     <div class="poster-container">
         <div class="posters">
