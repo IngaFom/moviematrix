@@ -238,7 +238,8 @@ body {
 }
 
 .search-form {
-    margin-left: 100px;
+    margin-left: 50px;
+    margin-top: -28px;
 }
 
 .footer {
