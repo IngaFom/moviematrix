@@ -343,14 +343,14 @@ form {
 
 .user-container {
     position: absolute;
-    top:25px;
-    right:20px;
+    top: 25px;
+    right: 20px;
     padding: 20px;
     text-align: right;
     z-index: 3;
 }
 .space-between {
-    margin-right:20px;
+    margin-right: 20px;
 }
 .user-container a:nth-child(1) {
     color: #ffffff;

@@ -170,7 +170,7 @@ def user_login(request):
         form = AuthenticationForm()
     return render(
         request,
-        'homepage/login.html',
+        'registration/login.html',
         {'form': form}
     )
 

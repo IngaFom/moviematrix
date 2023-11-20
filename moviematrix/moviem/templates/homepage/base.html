@@ -12,29 +12,31 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 <body>
-        <div class="header-container">
-            <header>
-                <div class="neon-container">
-                    <h1 class="neonText">MOVIEMATRIX</h1>
-                    <p class="neonText">Your Favorite Movies</p>
-                </div>
-                <div class="user-container">
+    <div class="header-container">
+        <header>
+            <div class="neon-container">
+                <h1 class="neonText">MOVIEMATRIX</h1>
+                <p class="neonText">Your Favorite Movies</p>
+            </div>
+            <div class="user-container">
+                <div class="user-info">
                     {% if user.is_authenticated %}
                         <p>Welcome, {{ user.username }}!</p>
-                        <a href="{% url 'logout' %}">Logout</a>
+                        <p><a style="color: white; margin-right: 10px;" href="{% url 'logout' %}" class="space-between">Logout</a></p>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <span class="space-between"></span>
                         <a href="{% url 'register' %}">Register</a>
                     {% endif %}
                 </div>
-            </header>
-        </div>
+            </div>
+        </header>
+    </div>
 
-        {% include 'movies/search_form.html' %}
-        <label class="hamburger-menu">
-            <input type="checkbox" />
-        </label>
+    {% include 'movies/search_form.html' %}
+    <label class="hamburger-menu">
+        <input type="checkbox" />
+    </label>
     <aside class="sidebar">
         <nav>
             <div>
@@ -54,35 +56,28 @@
                     </ul>
                 </div>
             </div>
-            {% if user.is_authenticated %}
-                <div>
-                    <p>Welcome, {{ user.username }}!</p>
-                    <a href="{% url 'logout' %}">Logout</a>
-                </div>
-
-            {% endif %}
         </nav>
     </aside>
-{% block content %}
-    <div class="poster-container">
-        <div class="posters">
-            {% for poster in random_posters %}
+    {% block content %}
+        <div class="poster-container">
+            <div class="posters">
+                {% for poster in random_posters %}
                     <a href="{% url 'movie_details' poster.id %}" class="poster">
-                    <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
-                </a>
-            {% endfor %}
+                        <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const posters = document.querySelector(".posters");
-            posters.addEventListener("mouseenter", function () {
-                this.classList.add("paused");
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const posters = document.querySelector(".posters");
+                posters.addEventListener("mouseenter", function () {
+                    this.classList.add("paused");
+                });
+                posters.addEventListener("mouseleave", function () {
+                    this.classList.remove("paused");
+                });
             });
-            posters.addEventListener("mouseleave", function () {
-                this.classList.remove("paused");
-            });
-        });
             document.addEventListener("DOMContentLoaded", function () {
                 const allCategoriesLink = document.getElementById("allCategoriesLink");
                 const allCategoriesSubMenu = document.getElementById("allCategoriesSubMenu");
@@ -91,10 +86,10 @@
                     allCategoriesSubMenu.style.display = (allCategoriesSubMenu.style.display === "none") ? "block" : "none";
                 });
             });
-    </script>
-{% endblock %}
-<footer>
-    <p>&copy; 2023 MOVIEMATRIX</p>
-</footer>
+        </script>
+    {% endblock %}
+    <footer>
+        <p>&copy; 2023 MOVIEMATRIX</p>
+    </footer>
 </body>
 </html>
