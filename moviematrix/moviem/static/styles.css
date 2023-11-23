@@ -14,7 +14,7 @@
     --bar-height: 8px;
     --hamburger-gap: 6px;
     --foreground: #1f51ff;
-    --hamburger-margin: 8px;
+    --hamburger-margin: 15px;
     --animation-timing: 200ms ease-in-out;
     --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
@@ -29,8 +29,8 @@ body {
 
 .neon-container {
     position: absolute;
-    top: 50px;
-    right: 0;
+    top: 70px;
+    right: 20px;
     padding: 20px;
     text-align: right;
 }
@@ -247,7 +247,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 5px; /* Adjust padding as needed */
+    padding: 5px;
     text-align: left;
     z-index: 1000;
 
@@ -257,20 +257,51 @@ body {
     border: transparent;
     border-radius: 15px; /* Border radius for rounded corners */
     padding: 8px; /* Padding inside the search box */
-    font-size: 16px; /* Font size */
+    font-size: 22px; /* Font size */
     width: 200px; /* Set a specific width or adjust as needed */
     margin-left: 0; /* Adjust the left margin */
     color: #000; /* Text color */
+    font-style: italic;
 }
 
-/* Additional styling for search button, if applicable */
+/* Style for the search button */
 .search-button {
-    color: transparent;
-    border: none;
-    padding: 8px 12px;
+    position: absolute;
+    top: 10px;
+    left: 247px;
+    bottom: 17px;
+    width: 60px; /* Adjust the width of the button */
+    text-align: center;
+    line-height: 0; /* Adjust the line height to vertically center the icon */
     cursor: pointer;
-    border-radius: 5px;
+    border: none;
+    background-color: white;
 }
+
+
+/* Style for the search box container */
+.search-box {
+    position: relative;
+}
+
+/* Style for the search box input */
+.search-box input {
+    border:none;
+    border-radius: 1px;
+    padding: 10px 5px 10px 25px; /* Adjust padding to accommodate the magnifying glass */
+    font-size: 20px;
+    width: 300px;
+    color: #333;
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Adjust the position of the magnifying glass */
+    background-size: 40px; /* Adjust the size of the magnifying glass */
+}
+
+/* Placeholder text style */
+.search-box input::placeholder {
+    color: #000000;
+}
+
 
 .movie-details-container {
     display: inline-flex;
@@ -359,4 +390,7 @@ form {
 .user-container a:nth-child(3){
     color: #ffffff;
     text-decoration: none;
+}
+.user-info a.logout {
+    margin-right: 6px;
 }

@@ -21,8 +21,7 @@
             <div class="user-container">
                 <div class="user-info">
                     {% if user.is_authenticated %}
-                        <p>Welcome, {{ user.username }}!</p>
-                        <p><a style="color: white; margin-right: 10px;" href="{% url 'logout' %}" class="space-between">Logout</a></p>
+                        <p>Welcome, {{ user.username }}! <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}" class="space-between logout">Logout</a></p> </p>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <span class="space-between"></span>
@@ -86,6 +85,7 @@
                     allCategoriesSubMenu.style.display = (allCategoriesSubMenu.style.display === "none") ? "block" : "none";
                 });
             });
+
         </script>
     {% endblock %}
     <footer>

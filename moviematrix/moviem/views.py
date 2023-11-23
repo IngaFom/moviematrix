@@ -3,12 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from .api import fetch_api
 from .forms import CustomUserCreationForm
-
-from django.views.generic import TemplateView
 from .models import UserProfile
 
 
@@ -175,5 +172,4 @@ def user_login(request):
     )
 
 
-class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'homepage/profile.html'
+
