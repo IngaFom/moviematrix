@@ -170,3 +170,8 @@ def user_login(request):
         'registration/login.html',
         {'form': form}
     )
+
+
+@login_required(login_url='http://127.0.0.1:8000/login/')
+def profile_view(request):
+    return render(request, 'movies/registration/profile.html')

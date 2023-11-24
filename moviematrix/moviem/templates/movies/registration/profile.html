@@ -1,10 +1,9 @@
 {% extends "homepage/base.html" %}
 
-{% block title %}Profile - MOVIEMATRIX{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block content %}
-  <h2>Your Profile</h2>
-  <p>Hello, {{ user.username }}! This is your profile page.</p>
+  <h1>Hello, {{ user.username }}! This is your profile page.</h1>
 
   <h3>Your Details</h3>
   <ul>
@@ -12,9 +11,7 @@
     <li>Email: {{ user.email }}</li>
     <!-- Add more user-specific details here -->
   </ul>
-
-  <!-- Add a button to the main page -->
-  <a href="{% url 'homepage/base.html' %}" class="btn btn-primary">Go to Main Page</a>
+ <a href="{% url 'base' %}" class="btn btn-primary">Go to Main Page</a>
 
   <!-- You can add more content specific to the user's profile -->
 {% endblock %}
