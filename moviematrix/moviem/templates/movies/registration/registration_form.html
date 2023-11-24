@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="mb-4">Register</h2>
                 <form method="post">
                     {% csrf_token %}
+                    <h2 style="margin-left: 200px;">Register</h2>
                     <div class="mb-3">
                         {{ form.email.label_tag }}
                         {{ form.email }}
