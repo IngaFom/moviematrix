@@ -253,56 +253,6 @@ body {
 
 }
 
-.search-box {
-    border: transparent;
-    border-radius: 15px; /* Border radius for rounded corners */
-    padding: 8px; /* Padding inside the search box */
-    font-size: 22px; /* Font size */
-    width: 200px; /* Set a specific width or adjust as needed */
-    margin-left: 0; /* Adjust the left margin */
-    color: #000; /* Text color */
-    font-style: italic;
-}
-
-/* Style for the search button */
-.search-button {
-    position: absolute;
-    top: 10px;
-    left: 247px;
-    bottom: 17px;
-    width: 60px; /* Adjust the width of the button */
-    text-align: center;
-    line-height: 0; /* Adjust the line height to vertically center the icon */
-    cursor: pointer;
-    border: none;
-    background-color: white;
-}
-
-
-/* Style for the search box container */
-.search-box {
-    position: relative;
-}
-
-/* Style for the search box input */
-.search-box input {
-    border:none;
-    border-radius: 1px;
-    padding: 10px 5px 10px 25px; /* Adjust padding to accommodate the magnifying glass */
-    font-size: 20px;
-    width: 300px;
-    color: #333;
-    background-repeat: no-repeat;
-    background-position: right 10px center; /* Adjust the position of the magnifying glass */
-    background-size: 40px; /* Adjust the size of the magnifying glass */
-}
-
-/* Placeholder text style */
-.search-box input::placeholder {
-    color: #000000;
-}
-
-
 .movie-details-container {
     display: inline-flex;
     justify-content: space-around;
@@ -394,3 +344,49 @@ form {
 .user-info a.logout {
     margin-right: 6px;
 }
+
+.box {
+  position: relative;
+  display: inline-block; /* Added to make it inline with the input */
+}
+
+.input {
+  padding: 10px;
+  width: 60px;
+  height: 60px;
+  background: none;
+  border: 4px solid #1f51ff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  font-family: "Times New Roman", sans-serif;
+  font-size: 26px;
+  color: white;
+  outline: none;
+  transition: .5s;
+}
+
+.input::placeholder {
+  color: #bbb;
+}
+
+.box i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 26px;
+  color: white;
+  transition: .2s;
+}
+
+.box:hover .input {
+  width: 350px;
+  background: #3b3640;
+  border-radius: 10px;
+}
+
+.box:hover i {
+  opacity: 0;
+  z-index: -1;
+}
+

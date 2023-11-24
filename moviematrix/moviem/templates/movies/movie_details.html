@@ -12,8 +12,8 @@
             <p>Release Date: {{ movie_data.release_date }}</p>
             <p> TMDB rating: {{movie_data.vote_average}}</p>
             <p>Overview: {{ movie_data.overview }}</p>
-            <h2>Actors</h2>
-            <ul>
+            <h2 >Actors</h2>
+            <ul style="margin-top: 10px;">
                 {% for actor in actors|slice:":10" %}
                     <li>{{ actor.name }} - {{ actor.character }}</li>
                 {% endfor %}

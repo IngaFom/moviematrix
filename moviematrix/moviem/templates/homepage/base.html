@@ -21,7 +21,7 @@
             <div class="user-container">
                 <div class="user-info">
                     {% if user.is_authenticated %}
-                        <p>Welcome, {{ user.username }}! <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}" class="space-between logout">Logout</a></p> </p>
+                        <p>Welcome, {{ user.username }}! <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}" class="space-between logout">Logout</a></p>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <span class="space-between"></span>
@@ -31,7 +31,6 @@
             </div>
         </header>
     </div>
-
     {% include 'movies/search_form.html' %}
     <label class="hamburger-menu">
         <input type="checkbox" />
