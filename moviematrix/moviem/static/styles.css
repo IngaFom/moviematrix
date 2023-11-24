@@ -207,7 +207,22 @@ body {
     text-decoration: none;
     font-family: "Times New Roman", sans-serif;
     color: white;
+    transition: color 0.5s ease-in-out;
 }
+
+.sidebar nav div a:hover {
+    color: #1f51ff;
+}
+
+.unclicked-link {
+    color: white;
+}
+
+.clicked-link {
+    color: grey; /* You can set your desired color for the clicked link */
+    /* Add any other styling you want for the clicked link */
+}
+
 
 #allCategoriesSubMenu {
     padding-left: 20px;
