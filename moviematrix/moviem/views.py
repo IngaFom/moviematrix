@@ -16,7 +16,7 @@ def profile(request):
 
     return render(
         request,
-        'homepage/profile.html',
+        '../templates/movies/registration/profile.html',
         {'user_profile': user_profile},
     )
 
@@ -170,6 +170,3 @@ def user_login(request):
         'registration/login.html',
         {'form': form}
     )
-
-
-
