@@ -1,11 +1,13 @@
 from django.test import TestCase
 from django.urls import reverse
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from django.conf import settings
+from .api import fetch_api
 from .forms import CustomUserCreationForm
 
 
-class FormsTest(TestCase):
+class Tests(TestCase):
+
     def test_custom_user_creation_form(self):
         data = {
             'username': 'testuser',
@@ -14,10 +16,13 @@ class FormsTest(TestCase):
             'email': 'testuser@example.com',
         }
         form = CustomUserCreationForm(data)
+
+        if form.is_valid():
+            print("Test passed: Form is valid.")
+        else:
+            print(f"Test failed: Form is not valid. Errors: {form.errors}")
+
         self.assertTrue(form.is_valid())
-
-
-class ViewsTests(TestCase):
 
     def test_movie_search_view(self):
         with (patch('moviem.views.fetch_api') as mock_fetch_api):
@@ -35,12 +40,36 @@ class ViewsTests(TestCase):
             self.assertIn('results', response.context)
             self.assertIn('query', response.context)
 
-
-class DatabaseTests(TestCase):
+            expected_message = " Search view test passed successfully." if 'results' in response.context \
+                                                              and 'query' in response.context \
+                else "Test failed: Unexpected response."
+            print(expected_message)
 
     def test_database_engine(self):
         expected_engine = 'django.db.backends.mysql'
         actual_engine = settings.DATABASES['default']['ENGINE']
 
-        self.assertEqual(actual_engine, expected_engine,
-                         f"Expected database engine to be {expected_engine}, but got {actual_engine}.")
+        if actual_engine == expected_engine:
+            print(f"Test passed successfully: Expected database engine is {expected_engine}.")
+        else:
+            print(f"Test failed: Unexpected database engine. Expected: {expected_engine}, Got: {actual_engine}")
+
+        self.assertEqual(actual_engine, expected_engine)
+
+    @patch('moviem.api.requests.get')
+    def test_api_key(self, mock_get):
+
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_get.return_value = mock_response
+
+        response = fetch_api(request_type='genre')
+        mock_get.assert_called_once_with(
+            f'https://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key={settings.API_KEY}'
+        )
+        self.assertEqual(response.status_code, 200)
+
+        if response.status_code == 200:
+            print("Api works")
+        else:
+            print("API dont work")
