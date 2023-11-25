@@ -466,3 +466,21 @@ form {
 .button-container {
     margin-left: 740px; /* Adjust the margin-top value as needed */
 }
+
+/*Login*/
+
+.form-group {
+    margin-top: auto;
+    text-align: center;
+}
+
+.container {
+    margin-top: -150px;
+    margin-left: 130px;
+}
+
+/*Register*/
+.mb-3 {
+    margin-top: auto;
+    text-align: center;
+}
