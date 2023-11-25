@@ -212,7 +212,7 @@ body {
 
 .allCategoriesSubMenu {
     margin-right: 10px;
-    color: white;/* Adjust this value to your preference */
+    color: white; /* Adjust this value to your preference */
 }
 
 /* Remove margin-right from the last column to prevent extra space */
@@ -349,7 +349,7 @@ body {
 .poster {
     max-width: 200px; /* Adjust the max-width of the poster */
     margin-right: 70px;
-    margin-left: -20px;/* Adjust the margin between the poster and movie info */
+    margin-left: -20px; /* Adjust the margin between the poster and movie info */
 }
 
 
@@ -364,6 +364,7 @@ form {
     margin-left: 35px;
     padding-left: 35px;
 }
+
 .header-container {
     position: relative;
 }
@@ -376,66 +377,74 @@ form {
     text-align: right;
     z-index: 3;
 }
+
 .space-between {
     margin-right: 20px;
 }
+
 .user-container a:nth-child(1) {
     color: #ffffff;
     text-decoration: none;
 }
-.user-container a:nth-child(3){
+
+.user-container a:nth-child(3) {
     color: #ffffff;
     text-decoration: none;
 }
+
 .user-info a.logout {
     margin-right: 6px;
 }
 
 .box {
-  background-color: transparent;
-  position: relative;
-  display: inline-block; /* Added to make it inline with the input */
+    background-color: transparent;
+    position: relative;
+    display: inline-block; /* Added to make it inline with the input */
 }
 
 .input {
-  padding: 8px;
-  width: 100px;
-  height: 20px;
-  background: transparent;
-  border: 2px solid #1f51ff;
-  border-radius: 20px;
-  box-sizing: content-box;
-  font-family: "Times New Roman", sans-serif;
-  font-size: 23px;
-  color: Silver;
-  outline: none;
-  transition: .5s;
+    padding: 8px;
+    width: 100px;
+    height: 20px;
+    background: transparent;
+    border: 2px solid #1f51ff;
+    border-radius: 20px;
+    box-sizing: content-box;
+    font-family: "Times New Roman", sans-serif;
+    font-size: 23px;
+    color: Silver;
+    outline: none;
+    transition: .5s;
 }
 
 .input::placeholder {
-  color: GrayText;
+    color: GrayText;
 }
 
 .box i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 26px;
-  color: white;
-  transition: .2s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    color: white;
+    transition: .2s;
 }
 
 .box:hover .input {
-  width: 350px;
-  background: transparent;
-  border-radius: 50px;
+    width: 350px;
+    background: transparent;
+    border-radius: 50px;
 }
 
 .box:hover i {
-  opacity: 0;
-  z-index: -1;
+    opacity: 0;
+    z-index: -1;
 }
+
+
+.mb-3 {
+    text-align: center;
 
 /* Profile Styles */
 .profile-container {
@@ -465,4 +474,5 @@ form {
 
 .button-container {
     margin-left: 740px; /* Adjust the margin-top value as needed */
+
 }
