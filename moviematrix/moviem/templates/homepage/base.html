@@ -41,7 +41,7 @@
             <div>
                 <a href="{% url 'base' %}">Home</a>
                 <a href="{% url 'profile' %}">Profile</a>
-                <a href="#" id="allCategoriesLink">All Categories</a>
+                <a href="{% url 'all_categories' %}" id="allCategoriesLink">All Categories</a>
                 <div id="allCategoriesSubMenu" style="display: none;">
                     <ul>
                         {% for genre in base %}

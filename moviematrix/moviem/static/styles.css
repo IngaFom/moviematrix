@@ -232,6 +232,8 @@ body {
     font-family: "Times New Roman", sans-serif;
     color: white;
     transition: color 0.5s ease-in-out;
+    margin-bottom: 17px;
+
 }
 
 .sidebar nav div a:hover {

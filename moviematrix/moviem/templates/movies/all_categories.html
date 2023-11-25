@@ -1,0 +1,23 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+    <script>
+        function handleClick(link) {
+            link.classList.add('clicked-link');
+        }
+    </script>
+
+    <ul>
+        {% for movie_data in movie_list_data %}
+            <li>
+                <p><a class="unclicked-link"
+                      href="{% url 'movie_details' movie_data.id %}"
+                      onclick="handleClick(this)">{{ movie_data.title }}</a></p>
+            </li>
+        {% empty %}
+            <li>No videos found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}}
