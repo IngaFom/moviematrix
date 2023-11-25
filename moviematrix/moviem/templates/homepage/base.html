@@ -43,7 +43,6 @@
                 <a href="{% url 'profile' %}">Profile</a>
                 <a href="#" id="allCategoriesLink">All Categories</a>
                 <div id="allCategoriesSubMenu" style="display: none;">
-                    <h2>Genres</h2>
                     <ul>
                         {% for genre in base %}
                             <li>
@@ -63,7 +62,7 @@
                 <div id="allCategoriesSubMenu1" class="allCategoriesSubMenu" style="display: none;">
                     <ul>
                         {% for genre in base|slice:":5" %}
-                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -71,7 +70,7 @@
                 <div id="allCategoriesSubMenu2" class="allCategoriesSubMenu" style="display:none;">
                      <ul>
                         {% for genre in base|slice:"5:10" %}
-                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -79,7 +78,7 @@
                 <div id="allCategoriesSubMenu3" class="allCategoriesSubMenu" style="display: none">
                     <ul>
                         {% for genre in base|slice:"10:15" %}
-                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -87,7 +86,7 @@
                 <div id="allCategoriesSubMenu4" class="allCategoriesSubMenu" style="display: none">
                     <ul>
                          {% for genre in base|slice:"15:" %}
-                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -10,11 +10,11 @@
     --background-image: url('wall2.jpg');
     --neon-text-size-1: 25px;
     --neon-text-size-2: 25px;
-    --bar-width: 60px;
-    --bar-height: 8px;
-    --hamburger-gap: 6px;
+    --bar-width: 50px;
+    --bar-height: 4px;
+    --hamburger-gap: 10px;
     --foreground: #1f51ff;
-    --hamburger-margin: 15px;
+    --hamburger-margin: 25px;
     --animation-timing: 200ms ease-in-out;
     --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
 }
@@ -211,7 +211,8 @@ body {
 }
 
 .allCategoriesSubMenu {
-    margin-right: 10px; /* Adjust this value to your preference */
+    margin-right: 10px;
+    color: white;/* Adjust this value to your preference */
 }
 
 /* Remove margin-right from the last column to prevent extra space */
@@ -246,6 +247,10 @@ body {
     /* Add any other styling you want for the clicked link */
 }
 
+.allCategoriesListColorWhite {
+    color: white;
+}
+
 
 #allCategoriesSubMenu {
     padding-left: 20px;
@@ -263,6 +268,7 @@ body {
 
 #allCategoriesSubMenu li {
     margin-bottom: 5px;
+    color: white;
 }
 
 body {
@@ -384,6 +390,7 @@ form {
 }
 
 .box {
+    background-color: transparent;
   position: relative;
   display: inline-block; /* Added to make it inline with the input */
 }
@@ -392,8 +399,8 @@ form {
   padding: 10px;
   width: 60px;
   height: 60px;
-  background: none;
-  border: 4px solid #1f51ff;
+  background: transparent;
+  border: 2px solid #1f51ff;
   border-radius: 50%;
   box-sizing: border-box;
   font-family: "Times New Roman", sans-serif;
@@ -404,7 +411,7 @@ form {
 }
 
 .input::placeholder {
-  color: #bbb;
+  color: transparent;
 }
 
 .box i {
@@ -419,8 +426,8 @@ form {
 
 .box:hover .input {
   width: 350px;
-  background: #3b3640;
-  border-radius: 10px;
+  background: transparent;
+  border-radius: 50px;
 }
 
 .box:hover i {
