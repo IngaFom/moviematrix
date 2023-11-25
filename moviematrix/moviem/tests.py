@@ -8,6 +8,15 @@ from .forms import CustomUserCreationForm
 
 class Tests(TestCase):
 
+    def test_register_view_get(self):
+        url = reverse('register')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'movies/registration/registration_form.html')
+        self.assertContains(response, '<form')
+        print("Test passed for register view")
+
+
     def test_custom_user_creation_form(self):
         data = {
             'username': 'testuser',
@@ -41,7 +50,7 @@ class Tests(TestCase):
             self.assertIn('query', response.context)
 
             expected_message = " Search view test passed successfully." if 'results' in response.context \
-                                                              and 'query' in response.context \
+                                                                           and 'query' in response.context \
                 else "Test failed: Unexpected response."
             print(expected_message)
 
