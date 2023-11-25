@@ -3,10 +3,11 @@
     <ul>
         {% for genre in genre_list %}
             <li>
+            test
                 <a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a>
             </li>
         {% empty %}
             <li>No genre found.</li>
-        {% endfor %}cd
+        {% endfor %}
     </ul>
 {% endblock %}
