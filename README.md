@@ -1,6 +1,9 @@
 # Moviematrix
 
 
+Moviematrix is our SDA Python course final project.
+
+
 ![image](https://github.com/IngaFom/moviematrix/assets/144582845/4a45d56c-cecc-430c-a821-6e0d3381e297)
 
 
@@ -11,6 +14,7 @@ The user can search by movie name and category.
 Movies come from the TMDB database via an API.
 
 ## Technology
+
 This project is based on:
 
 Python 3.11.2
@@ -18,7 +22,6 @@ Python 3.11.2
 Django4.2.6
 
 MYSQL
-
 
 ## Installation
 
@@ -35,7 +38,11 @@ MYSQL
 
    python -m venv venv
 
+
+   source venv/bin/activate # On Windows: venv\Scripts\activate
+
    source venv/bin/activate   # On Windows: venv\Scripts\activate
+
 
    pip install -r requirements.txt
 
@@ -60,8 +67,8 @@ MYSQL
 
 This app uses The Movie Database(TMDB) API to fetch data.
 
-
-The fetch_api function is a utility in the moviem project that simplifies making requests to The Movie Database (TMDb) API.
+The fetch_api function is a utility in the moviem project that simplifies making requests to The Movie Database (TMDb)
+API.
 
 It is responsible for constructing the API endpoint URL based on the provided request_type and optional parameters,
 making the API request, and handling potential errors.
@@ -74,12 +81,9 @@ In this project we use function_based views.
 
 ## Testing
 
-In project you can test our API_KEY, register, login and search_view and couple more.
+In project, you can test our API_KEY, register, login and search_view and couple more.
 
-To test code go tests.py and run   python manage.py test moviem.tests.Tests
-
-
-
+To test code go tests.py and run python manage.py test moviem.tests.Tests
 
 ## Credits
 
