@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from .api import fetch_api
 from .forms import CustomUserCreationForm
-from .models import UserProfile
+from .models import UserProfile, Genre
 
 
 def profile(request):
@@ -106,6 +106,11 @@ def movie_list(request, genre_id):
         'movies/movie_list.html',
         {'movie_list_data': all_movies}
     )
+
+
+def all_categories(request):
+    genres = Genre.objects.all()
+    return render(request, 'movies/movie_list.html', {'genre': genres})
 
 
 def movie_details(request, movie_id):
