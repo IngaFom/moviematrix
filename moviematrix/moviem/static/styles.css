@@ -283,7 +283,7 @@ body {
 
 .search-form {
     margin-left: 50px;
-    margin-top: -28px;
+    margin-top: -18px;;
 }
 
 .footer {
@@ -390,28 +390,28 @@ form {
 }
 
 .box {
-    background-color: transparent;
+  background-color: transparent;
   position: relative;
   display: inline-block; /* Added to make it inline with the input */
 }
 
 .input {
-  padding: 10px;
-  width: 60px;
-  height: 60px;
+  padding: 8px;
+  width: 100px;
+  height: 20px;
   background: transparent;
   border: 2px solid #1f51ff;
-  border-radius: 50%;
-  box-sizing: border-box;
+  border-radius: 20px;
+  box-sizing: content-box;
   font-family: "Times New Roman", sans-serif;
-  font-size: 26px;
-  color: white;
+  font-size: 23px;
+  color: Silver;
   outline: none;
   transition: .5s;
 }
 
 .input::placeholder {
-  color: transparent;
+  color: GrayText;
 }
 
 .box i {
