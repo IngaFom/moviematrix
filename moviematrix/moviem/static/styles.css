@@ -437,3 +437,32 @@ form {
   z-index: -1;
 }
 
+/* Profile Styles */
+.profile-container {
+    max-width: 600px;
+    margin: -100px auto;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.profile-info {
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+    }
+
+.profile-info h2 {
+    color: white;
+}
+
+.profile-info p {
+    color: lightgrey;
+}
+
+.button-container {
+    margin-left: 740px; /* Adjust the margin-top value as needed */
+}
