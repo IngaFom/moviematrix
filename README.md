@@ -1,5 +1,9 @@
 # Moviematrix
 
+
+![image](https://github.com/IngaFom/moviematrix/assets/144582845/4a45d56c-cecc-430c-a821-6e0d3381e297)
+
+
 Moviematrix is our SDA Python course final project. 
 
 This project was made to search for movies and get information.
