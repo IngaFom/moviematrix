@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}MOVIEMATRIX - Your Favorite Movies{% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
@@ -21,7 +22,9 @@
             <div class="user-container">
                 <div class="user-info">
                     {% if user.is_authenticated %}
-                        <p>Welcome, {{ user.username }}! <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}" class="space-between logout">Logout</a></p> </p>
+                        <p>Welcome, {{ user.username }}!
+                            <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}"
+                               class="space-between logout">Logout</a></p>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <span class="space-between"></span>
@@ -62,7 +65,8 @@
                 <div id="allCategoriesSubMenu1" class="allCategoriesSubMenu" style="display: none;">
                     <ul>
                         {% for genre in base|slice:":5" %}
-                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite"
+                                   href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -70,7 +74,8 @@
                 <div id="allCategoriesSubMenu2" class="allCategoriesSubMenu" style="display:none;">
                      <ul>
                         {% for genre in base|slice:"5:10" %}
-                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite"
+                                   href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -78,7 +83,8 @@
                 <div id="allCategoriesSubMenu3" class="allCategoriesSubMenu" style="display: none">
                     <ul>
                         {% for genre in base|slice:"10:15" %}
-                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite"
+                                   href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -86,7 +92,8 @@
                 <div id="allCategoriesSubMenu4" class="allCategoriesSubMenu" style="display: none">
                     <ul>
                          {% for genre in base|slice:"15:" %}
-                            <li><a class="allCategoriesListColorWhite" href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                            <li><a class="allCategoriesListColorWhite"
+                                   href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -94,7 +101,8 @@
                     <div class="posters">
                         {% for poster in random_posters %}
                         <a href="{% url 'movie_details' poster.id %}" class="poster">
-                            <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
+                            <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}"
+                                 alt="{{ poster.title }}">
                         </a>
                         {% endfor %}
                     </div>
@@ -114,12 +122,16 @@
             });
             document.addEventListener("DOMContentLoaded", function () {
                 const allCategoriesLink = document.getElementById("allCategoriesLink");
-                const categoriesContainers = document.querySelectorAll(".categories-container .allCategoriesSubMenu");
+                const categoriesContainers = document.querySelectorAll(
+                    ".categories-container .allCategoriesSubMenu"
+                );
 
                 allCategoriesLink.addEventListener("click", function (event) {
                     event.preventDefault();
                     categoriesContainers.forEach(function (container) {
-                        container.style.display = (container.style.display === "none") ? "block" : "none";
+                        container.style.display = (
+                            container.style.display === "none"
+                        ) ? "block" : "none";
                     });
                 });
             });
