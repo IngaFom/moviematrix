@@ -21,7 +21,7 @@
             <div class="user-container">
                 <div class="user-info">
                     {% if user.is_authenticated %}
-                        <p>Welcome, {{ user.username }}! <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}" class="space-between logout">Logout</a></p>
+                        <p>Welcome, {{ user.username }}! <a style="color: white; margin-left: 50px;" href="{% url 'logout' %}" class="space-between logout">Logout</a></p> </p>
                     {% else %}
                         <a href="{% url 'login' %}">Login</a>
                         <span class="space-between"></span>
@@ -31,6 +31,7 @@
             </div>
         </header>
     </div>
+
     {% include 'movies/search_form.html' %}
     <label class="hamburger-menu">
         <input type="checkbox" />
@@ -57,15 +58,51 @@
         </nav>
     </aside>
     {% block content %}
-        <div class="poster-container">
-            <div class="posters">
-                {% for poster in random_posters %}
-                    <a href="{% url 'movie_details' poster.id %}" class="poster">
-                        <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
-                    </a>
-                {% endfor %}
+        <div class="categories-container">
+            <div class="row">
+                <div id="allCategoriesSubMenu1" class="allCategoriesSubMenu" style="display: none;">
+                    <ul>
+                        {% for genre in base|slice:":5" %}
+                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div id="allCategoriesSubMenu2" class="allCategoriesSubMenu" style="display:none;">
+                     <ul>
+                        {% for genre in base|slice:"5:10" %}
+                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div id="allCategoriesSubMenu3" class="allCategoriesSubMenu" style="display: none">
+                    <ul>
+                        {% for genre in base|slice:"10:15" %}
+                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div id="allCategoriesSubMenu4" class="allCategoriesSubMenu" style="display: none">
+                    <ul>
+                         {% for genre in base|slice:"15:" %}
+                            <li><a href="{% url 'movie_list' genre.id %}">{{ genre.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="poster-container">
+                    <div class="posters">
+                        {% for poster in random_posters %}
+                        <a href="{% url 'movie_details' poster.id %}" class="poster">
+                            <img src="https://image.tmdb.org/t/p/w200/{{ poster.poster_path }}" alt="{{ poster.title }}">
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
+
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 const posters = document.querySelector(".posters");
@@ -78,10 +115,13 @@
             });
             document.addEventListener("DOMContentLoaded", function () {
                 const allCategoriesLink = document.getElementById("allCategoriesLink");
-                const allCategoriesSubMenu = document.getElementById("allCategoriesSubMenu");
+                const categoriesContainers = document.querySelectorAll(".categories-container .allCategoriesSubMenu");
+
                 allCategoriesLink.addEventListener("click", function (event) {
                     event.preventDefault();
-                    allCategoriesSubMenu.style.display = (allCategoriesSubMenu.style.display === "none") ? "block" : "none";
+                    categoriesContainers.forEach(function (container) {
+                        container.style.display = (container.style.display === "none") ? "block" : "none";
+                    });
                 });
             });
 
