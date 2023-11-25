@@ -1,6 +1,13 @@
 # Moviematrix
 
+
 Moviematrix is our SDA Python course final project.
+
+
+![image](https://github.com/IngaFom/moviematrix/assets/144582845/4a45d56c-cecc-430c-a821-6e0d3381e297)
+
+
+Moviematrix is our SDA Python course final project. 
 
 This project was made to search for movies and get information.
 The user can search by movie name and category.
@@ -31,7 +38,11 @@ MYSQL
 
    python -m venv venv
 
+
    source venv/bin/activate # On Windows: venv\Scripts\activate
+
+   source venv/bin/activate   # On Windows: venv\Scripts\activate
+
 
    pip install -r requirements.txt
 
@@ -50,6 +61,7 @@ MYSQL
 6. Start the development server
 
    python manage.py runserver
+
 
 ## API reference
 
