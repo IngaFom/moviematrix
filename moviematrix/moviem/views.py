@@ -1,12 +1,58 @@
 from random import sample
 from django.shortcuts import render
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth import login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from .api import fetch_api
 from .forms import CustomUserCreationForm
 from .models import UserProfile, Genre
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.urls import reverse_lazy
+from django.template.response import TemplateResponse
+
+
+def custom_password_reset(request):
+    if request.method == "POST":
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            UserModel = get_user_model()
+            email = form.cleaned_data["email"]
+            users = UserModel._default_manager.filter(email__iexact=email)
+            if users.exists():
+                for user in users:
+                    context = {
+                        'email': user.email,
+                        'domain': request.get_host(),
+                        'site_name': 'Your Site',
+                        'uid': default_token_generator.make_token(user),
+                        'user': user,
+                        'protocol': 'http',
+                    }
+                    subject_template_name = 'registration/password_reset_subject.txt'
+                    # Create your own email body template
+                    email_template_name = 'registration/custom_password_reset_email.html'
+                    return TemplateResponse(request, email_template_name, context)
+    else:
+        form = PasswordResetForm()
+    return render(request, 'registration/custom_password_reset_form.html', {'form': form})
+
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'registration/custom_password_reset_form.html'
+    email_template_name = 'moviematrix/moviem/templates/password_reset_email.html'
+    success_url = reverse_lazy('password_reset_done')
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'registration/custom_password_reset_done.html'
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'registration/custom_password_reset_confirm.html'
+    success_url = reverse_lazy('password_reset_complete')
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'registration/custom_password_reset_complete.html'
 
 
 def profile(request):
