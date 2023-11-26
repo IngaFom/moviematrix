@@ -494,3 +494,14 @@ form {
     margin-top: auto;
     text-align: center;
 }
+
+.centered-container {
+    text-align: center;
+    margin: auto;
+    max-width: 400px; /* Adjust the max-width as needed */
+    padding: 50px; /* Add padding for better visual appearance */
+}
+.centered-container form {
+    margin-top: 20px;
+    margin-left: -35px;
+}
